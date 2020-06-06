@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:cardCornerRadius="30dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/cardEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="27dp"
+                android:background="@drawable/sh_bell"
+                android:contentDescription="Image"
+                android:src="@drawable/ic_bell" />
+
+            <TextView
+                android:id="@+id/tvEventTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="27dp"
+                android:layout_toEndOf="@+id/cardEvent"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="title"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/tvEventCreatedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvEventTitle"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/cardEvent"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="8 Nov"
+                android:textColor="@color/gray"
+                android:textSize="12sp" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="32dp"
+                android:contentDescription="Image"
+                android:src="@drawable/ic_events" />
+
+            <TextView
+                android:id="@+id/tvEventDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardEvent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="32dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Believe you can and you’re halfway there."
+                android:textColor="@color/colorAccent"
+                android:textSize="13sp" />
+
+
+            <ImageView
+                android:id="@+id/imgEvent"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/tvEventDetails"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:contentDescription="Image"
+                android:src="@mipmap/ic_launcher" />
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapEvent"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/tvEventDetails"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/tvEventTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgEvent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="32dp"
+                android:drawableStart="@drawable/ic_icons_dark_time"
+                android:drawableTint="@color/colorAccent"
+                android:drawablePadding="3dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text=" 19:00 — 21:00"
+                android:textColor="@color/colorAccent"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvEventDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvEventTime"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="32dp"
+                android:drawableStart="@drawable/ic_calendar"
+                android:drawablePadding="3dp"
+                android:drawableTint="@color/colorAccent"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:layout_marginBottom="6dp"
+                android:text=" Today - 15 Nov"
+                android:textColor="@color/colorAccent"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/imgEventDelete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/tvEventTime"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="32dp"
+                android:contentDescription="Image"
+                android:layout_alignBaseline="@+id/tvEventTime"
+                android:src="@drawable/ic_bin" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+

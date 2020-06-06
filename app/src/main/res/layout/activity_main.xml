@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.AppBarOverlay"
+                app:title="Add Event" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginTop="48dp"
+                    android:backgroundTint="@color/colorAccent"
+                    app:cardCornerRadius="25dp">
+
+                    <ImageView
+                        android:id="@+id/imgTaskBellBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="Image"
+                        android:focusable="true"
+                        android:src="@drawable/ic_bell" />
+                </androidx.cardview.widget.CardView>
+
+
+                <EditText
+                    android:id="@+id/tvTaskBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_toEndOf="@+id/cardBar"
+                    android:autofillHints="title"
+                    android:backgroundTint="@color/colorAccent"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="start"
+                    android:hint="title"
+                    android:inputType="text"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/gray"
+                    android:textCursorDrawable="@null"
+                    android:textDirection="locale"
+                    android:textSize="22sp" />
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_details"
+                android:drawablePadding="3dp"
+                android:drawableTint="@color/white"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="Description"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+
+            <EditText
+                android:id="@+id/tvTaskDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/colorAccent"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="more details"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white_light"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/white_light"
+                android:textCursorDrawable="@null"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/tvMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:drawableStart="@drawable/ic_photo"
+                android:drawablePadding="3dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="Photo"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                app:cardBackgroundColor="@color/white_light"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/imgTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_below="@+id/tvTaskDetails"
+                    android:contentDescription="Image"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_add_pic"
+                    android:tint="@color/colorAccent"
+                    android:visibility="visible" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="3dp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text=" Map"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="8dp"
+                    android:foreground="@color/foreground_blur"
+                    android:visibility="visible" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableStart="@drawable/ic_icons_dark_user"
+                    android:drawablePadding="3dp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="Persons"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvAddPersons"
+                    style="@style/SelectableItemBackground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableStart="@drawable/ic_add"
+                    android:drawablePadding="3dp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="Add persons"
+                    android:textColor="@color/white_light"
+                    android:textSize="18sp"
+                    tools:listitem="@layout/item_contacts_event" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvContacts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginTop="8dp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="Time"
+                    android:textColor="@color/white_light"
+                    android:textSize="18sp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_contacts_event" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableStart="@drawable/ic_icons_dark_time"
+                    android:drawablePadding="3dp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="Time"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvStartTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTint="@color/white"
+                        android:focusable="true"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="start"
+                        android:text="Start time"
+                        android:textColor="@color/white_light"
+                        android:textDirection="locale"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:text="|"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/tvEndTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTint="@color/white"
+                        android:focusable="true"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="end"
+                        android:text="End time"
+                        android:textColor="@color/white_light"
+                        android:textDirection="locale"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawablePadding="3dp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="Date"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvStartDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTint="@color/white"
+                        android:focusable="true"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="start"
+                        android:text="Start date"
+                        android:textColor="@color/white_light"
+                        android:textDirection="locale"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:text="|"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/tvEndDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTint="@color/white"
+                        android:focusable="true"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="end"
+                        android:text="End date"
+                        android:textColor="@color/white_light"
+                        android:textDirection="locale"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btnEventsAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/sh_btn_corner"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Add Event"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

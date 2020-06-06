@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:cardCornerRadius="30dp"
+        app:contentPaddingBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="27dp"
+                    app:cardCornerRadius="25dp"
+                    android:backgroundTint="@color/white">
+                    <ImageView
+                        android:id="@+id/imgEventBell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:contentDescription="Image"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_bell" />
+                </androidx.cardview.widget.CardView>
+
+
+
+                <TextView
+                    android:id="@+id/tvEventTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_toEndOf="@+id/cardEvent"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="title"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:id="@+id/tvEventCreatedDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvEventTitle"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/cardEvent"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="8 Nov"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="32dp"
+                    android:contentDescription="Image"
+
+                    android:src="@drawable/ic_events" />
+
+                <TextView
+                    android:id="@+id/tvEventDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardEvent"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="32dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Believe you can and you’re halfway there."
+                    android:textColor="@color/white_light"
+                    android:textSize="13sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvEventDetails"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="20dp"
+                    android:foreground="@color/foreground_blur"
+
+                    android:layout_marginEnd="32dp">
+                    <ImageView
+                        android:id="@+id/imgEvent"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_below="@+id/tvEventDetails"
+                        android:contentDescription="Image"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_man"
+                        android:visibility="visible" />
+
+                </androidx.cardview.widget.CardView>
+
+
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_below="@+id/tvEventDetails"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:foreground="@color/foreground_blur"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvEventTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvEventDetails"
+                        android:layout_marginTop="14dp"
+                        android:drawableStart="@drawable/ic_icons_dark_time"
+                        android:drawablePadding="3dp"
+                        android:drawableTint="@color/colorAccent"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text=" 19:00 — 21:00"
+                        android:textColor="@color/white_light"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvEventDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvEventTime"
+                        android:layout_marginTop="6dp"
+                        android:drawableStart="@drawable/ic_calendar"
+                        android:drawablePadding="3dp"
+                        android:drawableTint="@color/colorAccent"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text=" Today - 15 Nov"
+                        android:textColor="@color/white_light"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgEventDelete"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="14dp"
+                        android:contentDescription="Image"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_bin" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+
