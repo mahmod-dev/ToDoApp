@@ -401,7 +401,6 @@
 
                 </LinearLayout>
 
-
                 <Button
                     android:id="@+id/btnEventsAdd"
                     android:layout_width="match_parent"
@@ -419,9 +418,7 @@
 
         </LinearLayout>
 
-
     </androidx.core.widget.NestedScrollView>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

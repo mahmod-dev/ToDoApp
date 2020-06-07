@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuHome"
+            android:icon="@drawable/ic_home_menu"
+            android:title="Home"
+            />
+
+        <item
+            android:id="@+id/menuTasks"
+            android:icon="@drawable/ic_task_menu"
+            android:title="Tasks" />
+
+        <item
+            android:id="@+id/menuEvents"
+            android:icon="@drawable/ic_calendar_menu"
+            android:title="Events" />
+
+        <item
+            android:id="@+id/menuProfile"
+            android:icon="@drawable/ic_icons_dark_user"
+            android:title="Profile"
+            />
+
+
+    </group>
+</menu>
