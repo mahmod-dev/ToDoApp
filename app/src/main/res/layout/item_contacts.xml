@@ -19,6 +19,7 @@
             android:layout_height="48dp"
             android:background="@drawable/circle"
             android:gravity="center"
+            android:fontFamily="@font/montserrat_bold"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             tools:text="F" />
@@ -29,8 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/tvIcon"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat_bold"
             android:layout_toEndOf="@id/tvIcon"
             android:textColor="@color/colorPrimaryDark"
+            android:textDirection="locale"
             android:textSize="18sp"
             tools:text="Name" />
 
@@ -38,10 +41,12 @@
             android:id="@+id/tvContactNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
             android:layout_below="@id/tvContactName"
             android:layout_alignStart="@id/tvContactName"
             android:ellipsize="marquee"
             android:singleLine="true"
+            android:textDirection="locale"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             tools:text="Number" />

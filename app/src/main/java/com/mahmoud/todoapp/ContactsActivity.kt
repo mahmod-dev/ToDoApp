@@ -1,25 +1,24 @@
 package com.mahmoud.todoapp
 
+import android.app.ActionBar
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import co.tiagoaguiar.recyclermasterjava.util.Helper
 import com.mahmoud.todoapp.adapter.ContactsAdapter
 import com.mahmoud.todoapp.model.Contact
 import kotlinx.android.synthetic.main.activity_contacts.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 
-class ContactsActivity : AppCompatActivity() {
+
+class ContactsActivity : AppCompatActivity(){
     private var actionMode: ActionMode? = null
+    private var contactsAdapter: ContactsAdapter? = null
     val TAG = "ContactsActivity"
 
 
@@ -27,31 +26,57 @@ class ContactsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contacts)
         val list = ArrayList<Contact>()
-      val job =  GlobalScope.async {Dispatchers.IO
-            Helper.getContactList(applicationContext,list)
+        title = "My Contacts"
+
+
+        list.add(Contact("Mahmoud","0597796100",false))
+        list.add(Contact("Ahmad","059999999",false))
+        list.add(Contact("Sami","059888888",false))
+        list.add(Contact("Ali","059777777",false))
+        initRecycleView(list)
+
+/*
+        val job = GlobalScope.launch(Dispatchers.IO) {
+            Dispatchers.IO
+            Helper.getContactList(applicationContext, list)
+            withContext(Dispatchers.Main){
+
+                Log.e(TAG, list.size.toString())
+
+            }
         }
+*/
 
 
-        runBlocking {
-            job.await()
-            Toast.makeText(this@ContactsActivity,"asdasdas",Toast.LENGTH_LONG).show()
-            Log.e(TAG,list.size.toString())
-            initRecycleView(list)
-
-        }
+    /*    runBlocking {
+            Toast.makeText(this@ContactsActivity, "asdasdas", Toast.LENGTH_LONG).show()
+            Log.e(TAG, list.size.toString())
+        }*/
 
 
     }
-    public fun initRecycleView(list: ArrayList<Contact>) {
-        val manager =  LinearLayoutManager(getApplicationContext());
-        manager.setOrientation(RecyclerView.VERTICAL);
-        rvContact.setLayoutManager(manager);
-        val adapter =  ContactsAdapter(list);
-        rvContact.setAdapter(adapter);
+
+    private fun initRecycleView(list: ArrayList<Contact>) {
+
+        rvContact.apply {
+            layoutManager = LinearLayoutManager(applicationContext)
+            contactsAdapter = ContactsAdapter(list)
+            adapter = contactsAdapter
+        }
+
+
+        contactsAdapter!!.setOnClickListener(object : ContactsAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                enableActionMode(position)
+            }
+
+            override fun onItemLongClick(position: Int) {
+                enableActionMode(position)
+            }
+        })
 
 
     }
-
 
 
     private fun enableActionMode(position: Int) {
@@ -76,7 +101,7 @@ class ContactsActivity : AppCompatActivity() {
                     mode: ActionMode,
                     item: MenuItem
                 ): Boolean {
-                    Log.e(TAG,"onActionItemClicked")
+                    Log.e(TAG, "onActionItemClicked")
 
                     if (item.itemId == R.id.menuCheck) {
                         mode.finish()
@@ -87,17 +112,27 @@ class ContactsActivity : AppCompatActivity() {
                 }
 
                 override fun onDestroyActionMode(mode: ActionMode) {
-                Log.e(TAG,"onDestroyActionMode")
+                    contactsAdapter?.selectedItems?.clear()
+                    val contacts: List<Contact> = contactsAdapter!!.getContacts()
+                    for (contact in contacts) {
+                        if (contact.isSelected) contact.isSelected=false
+                    }
+                    contactsAdapter?.notifyDataSetChanged()
+                    actionMode = null
+                    Log.e(TAG, "onDestroyActionMode")
                 }
             })
-       /* emailAdapter.toggleSelection(position)
-        val size: Int = emailAdapter.selectedItems.size()
+        contactsAdapter?.toggleSelection(position)
+        val size: Int = contactsAdapter?.selectedItems!!.size()
         if (size == 0) {
             actionMode?.finish()
         } else {
             actionMode?.setTitle(size.toString() + "")
             actionMode?.invalidate()
-        }*/
+            val bar: ActionBar? = actionBar
+            bar?.setBackgroundDrawable(ColorDrawable(Color.BLACK))
+            bar?.setTitle("sfsdfsdfsdf")
+        }
     }
 
 }

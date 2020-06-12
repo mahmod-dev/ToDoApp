@@ -1,5 +1,6 @@
 package com.mahmoud.todoapp
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Selection
@@ -11,6 +12,8 @@ import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.activity_add_events.*
 
 
 class AddEventsActivity : AppCompatActivity() {
@@ -18,6 +21,7 @@ class AddEventsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_events)
+        getWindow().statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary);
 
 
         val text = "show more details"
@@ -37,5 +41,9 @@ class AddEventsActivity : AppCompatActivity() {
         ss.setSpan(clickableSpan1, 0, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 //        textView.setText(ss)
 //        textView.setMovementMethod(LinkMovementMethod.getInstance())
+
+        tvAddPersons.setOnClickListener {
+            startActivity(Intent(this@AddEventsActivity, ContactsActivity::class.java))
+        }
     }
 }

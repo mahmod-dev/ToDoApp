@@ -1,18 +1,29 @@
 package co.tiagoaguiar.recyclermasterjava.util
 
+import android.Manifest
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.ContentResolver
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
+import android.location.LocationManager
+import android.net.Uri
 import android.provider.ContactsContract
+import android.provider.Settings
+import android.provider.Settings.SettingNotFoundException
 import android.util.Log
-import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.mahmoud.todoapp.BuildConfig
 import com.mahmoud.todoapp.model.Contact
-import kotlinx.coroutines.*
 
 
 object Helper {
     val TAG = "Helper"
-      fun getContactList(context: Context,data: ArrayList<Contact>) /*= GlobalScope().launch*/ {
+    fun getContactList(context: Context, data: ArrayList<Contact>) /*= GlobalScope().launch*/ {
         try {
             val cr: ContentResolver = context.contentResolver
             val cur: Cursor? = cr.query(
@@ -63,10 +74,45 @@ object Helper {
             }
 
             cur?.close()
-        }catch (e:Exception){
-           /* withContext(Dispatchers.Main){
-                Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
-            }*/
+        } catch (e: Exception) {
+            /* withContext(Dispatchers.Main){
+                 Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+             }*/
         }
     }
+
+
+    fun permissionAlreadyGranted(context: Context, permission: String): Boolean {
+        //   Manifest.permission.CAMERA
+        val result: Int =
+            ContextCompat.checkSelfPermission(context, permission)
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
+
+    fun openSettingsDialog(activity: Activity) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
+        builder.setTitle("Required Permissions")
+        builder.setMessage("This app require permission to use awesome feature. Grant them in app settings.")
+        builder.setPositiveButton("Take Me To SETTINGS"
+        ) { dialog, which ->
+            dialog.cancel()
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            val uri: Uri = Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
+            intent.data = uri
+            activity.startActivityForResult(intent, 101)
+        }
+        builder.setNegativeButton("Cancel",
+            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.show()
+    }
+
+
+
+
+
+
+
+
+
 }

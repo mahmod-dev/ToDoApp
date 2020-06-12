@@ -8,8 +8,6 @@ class Contact {
     constructor(
         name: String?,
         number: String?,
-        stared: Boolean,
-        unread: Boolean,
         selected: Boolean
     ) {
         this.name = name
