@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mahmoud.todoapp.DetailsEventsActivity
 import com.mahmoud.todoapp.DetailsTasksActivity
 import com.mahmoud.todoapp.R
 import com.mahmoud.todoapp.adapter.EventsAdapter
@@ -43,7 +44,7 @@ class EventsFragment : Fragment() {
         eventsAdapter?.setOnClickListener(object : EventsAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
 
-                val intent = Intent(context, DetailsTasksActivity::class.java)
+                val intent = Intent(context, DetailsEventsActivity::class.java)
                 startActivity(intent)
 
             }

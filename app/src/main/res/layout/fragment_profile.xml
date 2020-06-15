@@ -40,11 +40,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:padding="16dp"
-                android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Mahmoud Aldous"
+                android:textColor="@color/white"
                 android:textDirection="locale"
-                android:text="Mahmoud Aldous"/>
+                android:textSize="36sp" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -52,25 +54,35 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        android:fitsSystemWindows="true"
         android:layout_marginBottom="20dp"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="16dp"
-            />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvProfilePercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_margin="20dp"
+                android:text="50%"
+                android:textColor="@color/white"
+                android:textSize="33sp" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/tvProfilePercentage"
+                android:layout_marginTop="16dp" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

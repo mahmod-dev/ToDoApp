@@ -19,7 +19,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.mahmoud.todoapp.util.LocationHelper
 import com.mahmoud.todoapp.util.LocationManager
-import com.mahmoud.todoapp.util.LocationUtil
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -46,11 +45,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL)
+        mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
 
 
 
-        if (LocationUtil.isGPSEnabled(this)) {
+      /*  if (LocationUtil.isGPSEnabled(this)) {
             Toast.makeText(this@MapsActivity, "Enable", Toast.LENGTH_LONG).show()
 
 
@@ -98,7 +97,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                                     val lat = it.latitude
                                     val marker = mMap.addMarker(MarkerOptions().position(it))
                                     marker.title = "new Title"
-                                /*    marker.setIcon(BitmapDescriptorFactory
+                                  /* marker.setIcon(BitmapDescriptorFactory
                                         .fromResource(R.drawable.ic_calendar_menu))*/
                                 }
                             }
@@ -115,7 +114,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 mMap.isMyLocationEnabled = true
             }
         } else
-            LocationUtil.openLocationDialog(this)
+            LocationUtil.openLocationDialog(this)*/
     }
 
     override fun onResume() {

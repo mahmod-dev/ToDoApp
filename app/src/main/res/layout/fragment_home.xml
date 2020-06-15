@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,11 +18,11 @@
         android:layout_marginBottom="24dp"
         android:drawableStart="@drawable/ic_icons_dark_time"
         android:drawablePadding="6dp"
-        android:drawableTint="@color/colorPrimary"
+        android:drawableTint="@color/black"
         android:textDirection="locale"
         android:fontFamily="@font/montserrat_bold"
         android:text="Today"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black"
         android:textSize="22sp" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -42,7 +43,7 @@
         android:drawablePadding="6dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Others"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black"
         android:textSize="22sp" />
 
     <androidx.recyclerview.widget.RecyclerView

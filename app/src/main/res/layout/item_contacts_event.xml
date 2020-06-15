@@ -13,5 +13,6 @@
         android:layout_margin="4dp"
         android:fontFamily="@font/montserrat_regular"
         android:background="@drawable/sh_corner"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Mahmoud I. Aldous"/>
 </RelativeLayout>

@@ -34,19 +34,6 @@
 
                 >
 
-                <!-- <ImageView
-                     android:id="@+id/img"
-                     android:layout_width="36dp"
-                     android:layout_height="36dp"
-                     android:layout_marginStart="20dp"
-                     android:layout_marginTop="40dp"
-                     android:layout_marginEnd="32dp"
-                     android:background="?attr/selectableItemBackgroundBorderless"
-                     android:clickable="true"
-                     android:contentDescription="Image"
-                     android:focusable="true"
-                     android:src="@drawable/sh_arrow" />-->
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardBar"
                     android:layout_width="wrap_content"
@@ -123,10 +110,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="32dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/sh_corner"
                 android:clickable="true"
                 android:drawableStart="@drawable/ic_details"
                 android:drawablePadding="3dp"
@@ -143,21 +130,22 @@
                 android:id="@+id/tvTaskDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="16dp"
+                android:textDirection="locale"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="Believe you can and you’re halfway there."
-                android:textColor="@color/white_light"
+                android:textColor="@color/white"
                 android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/tvMap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:drawableStart="@drawable/ic_photo"
                 android:drawablePadding="3dp"
@@ -171,9 +159,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
                 android:foreground="@color/foreground_blur"
                 app:cardCornerRadius="20dp">
 
@@ -193,15 +181,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="22dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:background="@drawable/sh_corner"
                     android:drawableStart="@drawable/ic_location"
                     android:drawablePadding="3dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
@@ -214,8 +204,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:foreground="@color/foreground_blur"
-                    app:cardCornerRadius="38dp">
+                    app:cardCornerRadius="20dp">
 
                     <fragment
                         android:id="@+id/mapEventDetails"
@@ -232,9 +224,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
                 android:orientation="vertical">
@@ -242,7 +234,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:background="@drawable/sh_corner"
                     android:drawableStart="@drawable/ic_icons_dark_user"
                     android:drawablePadding="3dp"
                     android:drawableTint="@color/white"
@@ -258,21 +250,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="27dp"
                     android:layout_marginTop="8dp"
-                    android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:text="Time"
-                    android:textColor="@color/white_light"
-                    android:textSize="18sp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_contacts_event" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/sh_corner"
                     android:drawableStart="@drawable/ic_icons_dark_time"
                     android:drawablePadding="3dp"
                     android:drawableTint="@color/white"
