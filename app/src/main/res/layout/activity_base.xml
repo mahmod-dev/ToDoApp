@@ -39,8 +39,10 @@
             android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layoutDirection="rtl"
+
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -143,6 +145,12 @@
             android:orientation="vertical"
             android:paddingStart="16dp">
 
+            <Button
+                android:id="@+id/btnLocale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="locale"/>
+
             <TextView
                 android:id="@+id/logout"
                 android:layout_width="match_parent"
@@ -156,7 +164,7 @@
                 android:gravity="start"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Log out"
+                android:text="@string/log_out"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/black"
                 android:textDirection="locale" />

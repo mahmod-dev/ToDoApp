@@ -10,4 +10,38 @@
     <string name="title_activity_maps">Map</string>
 
 
+    <string name="add_event">Add Event</string>
+    <string name="title">title</string>
+    <string name="description">Description</string>
+    <string name="more_details">more details</string>
+    <string name="photo">Photo</string>
+    <string name="map">Map</string>
+    <string name="persons">Persons</string>
+    <string name="add_persons">Add persons</string>
+    <string name="time">Time</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="date">Date</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="add_task">Add Task</string>
+    <string name="daily">Daily</string>
+    <string name="works">Works</string>
+    <string name="home">Home</string>
+    <string name="friends">Friends</string>
+    <string name="log_out">Log out</string>
+    <string name="details">Details</string>
+    <string name="edit">Edit</string>
+    <string name="todo">ToDo</string>
+    <string name="mahmoud_aldous">Mahmoud Aldous</string>
+    <string name="my_email">mahmod-dev@outlook.com</string>
+    <string name="tasks">Tasks</string>
+    <string name="task">Task</string>
+    <string name="event">Event</string>
+    <string name="events">Events</string>
+    <string name="profile">Profile</string>
+    <string name="search">search ...</string>
+    <string name="cancel">cancel</string>
+
+
 </resources>

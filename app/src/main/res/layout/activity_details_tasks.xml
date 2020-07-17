@@ -2,10 +2,9 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -18,15 +17,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/sh_toolbar"
+            android:backgroundTint="@color/colorPrimary"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.AppBarOverlay"
-                app:title="Details" />
-
+                app:popupTheme="@style/AppTheme.AppBarOverlay" />
+            <ImageView
+                android:id="@+id/imgArrowBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|top"
+                android:src="@drawable/ic_icons_light_arrow_back"
+                android:padding="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/sh_ripple"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="160dp">
@@ -63,7 +72,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
                     android:text="title"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="32dp" />
 
 
@@ -77,8 +86,36 @@
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
                     android:text="Nov 12"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/white_light"
                     android:textSize="12sp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgBarTaskType"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/tvTaskBar"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_task_everyday"
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="0.5dp"
+                    app:civ_border_color="@color/purple_dark_2" />
+
+                <TextView
+                    android:id="@+id/tvBarTaskName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgBarTaskType"
+                    android:layout_alignParentEnd="true"
+                    android:textDirection="locale"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="12sp"
+                    android:layout_alignStart="@+id/imgBarTaskType"
+                    android:layout_alignEnd="@+id/imgBarTaskType"
+                    android:gravity="center"
+                    android:textColor="@color/white_light"
+                    android:text="Daily"/>
 
             </RelativeLayout>
 

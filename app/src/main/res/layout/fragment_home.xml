@@ -18,12 +18,12 @@
         android:layout_marginBottom="24dp"
         android:drawableStart="@drawable/ic_icons_dark_time"
         android:drawablePadding="6dp"
-        android:drawableTint="@color/black"
+        android:drawableTint="@color/colorPrimary"
         android:textDirection="locale"
         android:fontFamily="@font/montserrat_bold"
         android:text="Today"
-        android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:textColor="@color/gray"
+        android:textSize="18dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHomeToday"
@@ -43,8 +43,8 @@
         android:drawablePadding="6dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Others"
-        android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:textColor="@color/gray"
+        android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHomeOthers"

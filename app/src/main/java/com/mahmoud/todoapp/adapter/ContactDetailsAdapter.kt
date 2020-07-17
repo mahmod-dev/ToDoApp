@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import com.mahmoud.todoapp.R
 import com.mahmoud.todoapp.model.Contact
 import kotlinx.android.synthetic.main.item_contacts.view.*
+import kotlinx.android.synthetic.main.item_contacts_event.view.*
 import java.util.*
 
 
@@ -53,7 +55,7 @@ class ContactDetailsAdapter(var data: ArrayList<Contact>, var item:Int =R.layout
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var tvName: TextView = itemView.tvContactName
+        var tvName: Chip = itemView.inputChip
         fun bind(contact: Contact) {
 
             tvName.text = contact.name

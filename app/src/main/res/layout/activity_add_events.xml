@@ -2,85 +2,69 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:are="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="@color/colorPrimaryDark"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="@color/colorPrimary"
-            android:background="@drawable/sh_toolbar"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.AppBarOverlay"
-                app:title="Add Event" />
+                android:background="@drawable/sh_toolbar"
+                android:backgroundTint="@color/colorPrimary"
+                app:popupTheme="@style/AppTheme.AppBarOverlay" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="160dp">
+            <ImageView
+                android:id="@+id/imgArrowBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|top"
+                android:src="@drawable/ic_icons_light_arrow_back"
+                android:padding="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/sh_ripple"/>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="48dp"
-                    android:backgroundTint="@color/colorAccent"
-                    app:cardCornerRadius="25dp">
+            <com.github.clans.fab.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:cropToPadding="true"
+                android:src="@drawable/ic_bell"
+                app:elevation="10dp"
+                app:fabCustomSize="50dp"
+                app:fab_colorNormal="@color/colorAccent"
+                app:fab_colorPressed="@color/purple_dark"
+                app:fab_progress_showBackground="true"
+                app:fab_showAnimation="@anim/fab_scale_up"
+                app:fab_showShadow="true"
+                app:useCompatPadding="true" />
 
-                    <ImageView
-                        android:id="@+id/imgTaskBellBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="Image"
-                        android:focusable="true"
-                        android:src="@drawable/ic_bell" />
-                </androidx.cardview.widget.CardView>
-
-
-                <EditText
-                    android:id="@+id/tvTaskBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_toEndOf="@+id/cardBar"
-                    android:autofillHints="title"
-                    android:backgroundTint="@color/colorAccent"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="start"
-                    android:hint="title"
-                    android:inputType="text"
-                    android:textColor="@color/colorAccent"
-                    android:textColorHint="@color/gray"
-                    android:textCursorDrawable="@null"
-                    android:textDirection="locale"
-                    android:textSize="22sp" />
-
-
-            </RelativeLayout>
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -99,13 +83,59 @@
             android:background="@color/colorPrimaryDark"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/sh_corner"
+                android:clickable="true"
+                android:drawablePadding="3dp"
+                android:drawableTint="@color/white"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/title"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp">
+
+                <EditText
+                    android:id="@+id/etEventBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:autofillHints="title"
+                    android:background="@drawable/sh_title"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="start|center"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:textDirection="locale"
+                    android:textSize="22sp" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="18dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/sh_corner"
                 android:clickable="true"
                 android:drawableStart="@drawable/ic_details"
@@ -114,64 +144,74 @@
                 android:focusable="true"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:text="Description"
+                android:text="@string/description"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
-
-            <EditText
-                android:id="@+id/tvTaskDetails"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="3dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="@color/colorAccent"
-                android:fontFamily="@font/montserrat_regular"
-                android:hint="more details"
-                android:inputType="textMultiLine"
-                android:textColor="@color/white_light"
-                android:textColorHighlight="@color/colorAccent"
-                android:textColorHint="@color/white_light"
-                android:textCursorDrawable="@null"
-                android:textSize="16sp" />
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/white_light"
+                app:cardCornerRadius="20dp">
 
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:fillViewport="true"
+                    android:overScrollMode="always">
+
+                    <com.chinalwb.are.AREditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:hint="@string/more_details"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:textCursorDrawable="@null"
+                        android:textSize="50sp" />
+                </androidx.core.widget.NestedScrollView>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tvMap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/sh_corner"
                 android:drawableStart="@drawable/ic_photo"
                 android:drawablePadding="3dp"
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:text="Photo"
+                android:text="@string/photo"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="@color/white_light"
                 app:cardCornerRadius="20dp">
 
                 <ImageView
-                    android:id="@+id/imgTask"
+                    android:id="@+id/imgAddEvent"
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:layout_below="@+id/tvTaskDetails"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/tvEventDetails"
                     android:contentDescription="Image"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_add_pic"
-                    android:tint="@color/colorAccent"
                     android:visibility="visible" />
 
             </androidx.cardview.widget.CardView>
@@ -181,8 +221,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -194,12 +234,12 @@
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text=" Map"
+                    android:text="@string/map"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <com.google.android.gms.maps.MapView
-                    android:id="@+id/mapTask"
+                    android:id="@+id/mapEvent"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginTop="8dp"
@@ -213,9 +253,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="22dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
                 android:gravity="start"
                 android:orientation="vertical">
 
@@ -228,7 +267,7 @@
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="Persons"
+                    android:text="@string/persons"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -239,16 +278,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
                     android:layout_marginTop="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:drawableStart="@drawable/ic_add"
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/white"
+                    android:focusable="true"
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:text="Add persons"
+                    android:padding="6dp"
+                    android:text="@string/add_persons"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     tools:listitem="@layout/item_contacts_event" />
@@ -263,7 +303,6 @@
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:text="Time"
                     android:textColor="@color/white_light"
                     android:textSize="18sp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -279,7 +318,7 @@
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="Time"
+                    android:text="@string/time"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -296,13 +335,15 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
-                        android:background="?attr/civ_border_color"
+                        android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:drawableTint="@color/white"
                         android:focusable="true"
                         android:fontFamily="@font/montserrat_regular"
-                        android:gravity="start"
-                        android:text="Start time"
+                        android:foreground="@drawable/sh_border"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="@string/start_time"
                         android:textColor="@color/white_light"
                         android:textDirection="locale"
                         android:textSize="18sp" />
@@ -328,8 +369,10 @@
                         android:drawableTint="@color/white"
                         android:focusable="true"
                         android:fontFamily="@font/montserrat_regular"
-                        android:gravity="end"
-                        android:text="End time"
+                        android:foreground="@drawable/sh_border"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="@string/end_time"
                         android:textColor="@color/white_light"
                         android:textDirection="locale"
                         android:textSize="18sp" />
@@ -346,7 +389,7 @@
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="Date"
+                    android:text="@string/date"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -368,8 +411,10 @@
                         android:drawableTint="@color/white"
                         android:focusable="true"
                         android:fontFamily="@font/montserrat_regular"
-                        android:gravity="start"
-                        android:text="Start date"
+                        android:foreground="@drawable/sh_border"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="@string/start_date"
                         android:textColor="@color/white_light"
                         android:textDirection="locale"
                         android:textSize="18sp" />
@@ -395,28 +440,35 @@
                         android:drawableTint="@color/white"
                         android:focusable="true"
                         android:fontFamily="@font/montserrat_regular"
-                        android:gravity="end"
-                        android:text="End date"
+                        android:foreground="@drawable/sh_border"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="@string/end_date"
                         android:textColor="@color/white_light"
                         android:textDirection="locale"
                         android:textSize="18sp" />
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btnEventsAdd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="32dp"
-                    android:background="@drawable/sh_btn_corner"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Add Event"
-                    android:textColor="@color/white" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnEventsAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/sh_btn_corner"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="16dp"
+                android:text="@string/add_event"
+                android:textColor="@color/white" />
+
 
         </LinearLayout>
 

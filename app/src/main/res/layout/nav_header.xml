@@ -37,7 +37,7 @@
             android:textColor="@color/white"
             android:textDirection="locale"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Mahmoud Aldous" />
+            android:text="@string/mahmoud_aldous" />
 
         <TextView
             android:id="@+id/tvEmailNavHeader"
@@ -47,7 +47,7 @@
             android:textSize="14sp"
             android:textDirection="locale"
             android:fontFamily="@font/montserrat_regular"
-            android:text="mahmod-dev@outlook.com" />
+            android:text="@string/my_email" />
 
 
     </LinearLayout>

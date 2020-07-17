@@ -27,7 +27,7 @@
         android:background="@drawable/sh_splash"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
-        android:text="ToDo"
+        android:text="@string/todo"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold" />

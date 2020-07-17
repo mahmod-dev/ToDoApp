@@ -11,12 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import co.tiagoaguiar.recyclermasterjava.util.Helper.getContactList
 import com.mahmoud.todoapp.adapter.ContactsAdapter
 import com.mahmoud.todoapp.model.Contact
 import kotlinx.android.synthetic.main.activity_contacts.*
+import kotlinx.coroutines.*
 
 
-class ContactsActivity : AppCompatActivity(){
+class ContactsActivity : AppCompatActivity() {
     private var actionMode: ActionMode? = null
     private var contactsAdapter: ContactsAdapter? = null
     val TAG = "ContactsActivity"
@@ -25,33 +27,31 @@ class ContactsActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contacts)
-        val list = ArrayList<Contact>()
+        var list = ArrayList<Contact>()
         title = "My Contacts"
 
 
-        list.add(Contact("Mahmoud","0597796100",false))
+/*        list.add(Contact("Mahmoud","0597796100",false))
         list.add(Contact("Ahmad","059999999",false))
         list.add(Contact("Sami","059888888",false))
-        list.add(Contact("Ali","059777777",false))
-        initRecycleView(list)
+        list.add(Contact("Ali","059777777",false))*/
 
-/*
-        val job = GlobalScope.launch(Dispatchers.IO) {
-            Dispatchers.IO
-            Helper.getContactList(applicationContext, list)
-            withContext(Dispatchers.Main){
 
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = async {
+                list = getContactList(this@ContactsActivity)
+
+            }.await()
+
+            withContext(Dispatchers.Main) {
                 Log.e(TAG, list.size.toString())
+
+                initRecycleView( list)
 
             }
         }
-*/
-
-
-    /*    runBlocking {
-            Toast.makeText(this@ContactsActivity, "asdasdas", Toast.LENGTH_LONG).show()
-            Log.e(TAG, list.size.toString())
-        }*/
 
 
     }
@@ -115,7 +115,7 @@ class ContactsActivity : AppCompatActivity(){
                     contactsAdapter?.selectedItems?.clear()
                     val contacts: List<Contact> = contactsAdapter!!.getContacts()
                     for (contact in contacts) {
-                        if (contact.isSelected) contact.isSelected=false
+                        if (contact.isSelected) contact.isSelected = false
                     }
                     contactsAdapter?.notifyDataSetChanged()
                     actionMode = null

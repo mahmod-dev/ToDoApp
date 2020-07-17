@@ -11,6 +11,7 @@
     <color name="purple_dark_2">#4A355A</color>
     <color name="gray">#707070</color>
     <color name="gray_light">#8D707070</color>
+    <color name="gray_more_light">#8DC6C5C5</color>
     <color name="gray_item_background">#f2f2f2</color>
     <color name="colorPrimary_light">#518A56AC</color>
     <color name="foreground_blur">#57FFFFFF</color>

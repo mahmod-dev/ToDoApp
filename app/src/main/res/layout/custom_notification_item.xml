@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notificationContainer"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvNotificationTime"
+        style="@style/TextAppearance.Compat.Notification.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/title"
+        android:textColor="@color/white"
+        android:textDirection="locale"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/tvNotificationTitle"
+        style="@style/TextAppearance.Compat.Notification.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgNotificationBell"
+        android:layout_alignTop="@+id/imgNotificationSmall"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/title"
+        android:textColor="@color/white"
+        android:textDirection="locale"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvNotificationInfo"
+        style="@style/TextAppearance.Compat.Notification.Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNotificationTitle"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/description"
+        android:textColor="@color/white"
+        android:textDirection="locale" />
+
+    <ImageView
+        android:id="@+id/imgArrowExpand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_expand_more"
+        android:tint="@color/white" />
+
+
+    <ImageView
+        android:id="@+id/imgNotificationBell"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/ic_bell" />
+
+
+    <ImageView
+        android:id="@+id/imgNotificationSmall"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/imgNotificationBell"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_task_home"
+        android:visibility="visible" />
+
+
+</RelativeLayout>

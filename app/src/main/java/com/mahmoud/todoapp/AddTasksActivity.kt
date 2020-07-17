@@ -10,6 +10,7 @@ class AddTasksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_tasks)
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
 }

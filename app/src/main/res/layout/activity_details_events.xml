@@ -26,7 +26,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/AppTheme.AppBarOverlay"
-                app:title="Details" />
+                app:title="@string/details" />
+
+            <ImageView
+                android:id="@+id/imgArrowBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|top"
+                android:src="@drawable/ic_icons_dark_back"
+                android:padding="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/sh_ripple"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -65,7 +77,7 @@
                     android:layout_toEndOf="@+id/cardBar"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="title"
+                    android:text="@string/title"
                     android:textColor="@color/black"
                     android:textSize="32dp" />
 
@@ -121,7 +133,7 @@
                 android:focusable="true"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:text="More Details"
+                android:text="@string/more_details"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -152,7 +164,7 @@
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:text="Photo"
+                android:text="@string/photo"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -195,7 +207,7 @@
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text=" Map"
+                    android:text="@string/map"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -240,7 +252,7 @@
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="Friends"
+                    android:text="@string/friends"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -252,7 +264,6 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:text="Time"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_contacts_event" />
 
@@ -266,7 +277,7 @@
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="Time"
+                    android:text="@string/time"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -279,7 +290,7 @@
                     android:drawableTint="@color/white"
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
-                    android:text="Time"
+                    android:text="@string/time"
                     android:textColor="@color/white_light"
                     android:textSize="18sp" />
 
@@ -293,7 +304,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="Edit"
+                    android:text="@string/edit"
                     android:textColor="@color/white" />
 
             </LinearLayout>

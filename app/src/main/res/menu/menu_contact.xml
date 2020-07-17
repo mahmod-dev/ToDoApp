@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menuCheck"
         android:icon="@drawable/ic_check"
-        android:title="Home"
+        android:title="@string/home"
         app:showAsAction="always"
 
         />

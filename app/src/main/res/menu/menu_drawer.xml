@@ -8,24 +8,24 @@
         <item
             android:id="@+id/menuHome"
             android:icon="@drawable/ic_home_menu"
-            android:title="Home"
+            android:title="@string/home"
 
             />
 
         <item
             android:id="@+id/menuTasks"
             android:icon="@drawable/ic_task_menu"
-            android:title="Tasks" />
+            android:title="@string/tasks" />
 
         <item
             android:id="@+id/menuEvents"
             android:icon="@drawable/ic_calendar_menu"
-            android:title="Events" />
+            android:title="@string/events" />
 
         <item
             android:id="@+id/menuProfile"
             android:icon="@drawable/ic_icons_dark_user"
-            android:title="Profile"
+            android:title="@string/profile"
             />
 
 

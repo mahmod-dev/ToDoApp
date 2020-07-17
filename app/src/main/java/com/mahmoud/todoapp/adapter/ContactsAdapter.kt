@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.item_contacts.view.*
 import java.util.*
 
 
-class ContactsAdapter(var data: ArrayList<Contact>,var item:Int =R.layout.item_contacts) :
+class ContactsAdapter(var data: ArrayList<Contact>, var item: Int = R.layout.item_contacts) :
     RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
     var mListener: OnItemClickListener? = null
     val selectedItems = SparseBooleanArray()
@@ -155,16 +155,6 @@ class ContactsAdapter(var data: ArrayList<Contact>,var item:Int =R.layout.item_c
 
     }
 */
-        /*    public void initRecycleView(ArrayList<MyObject> data) {
-        LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
-        manager.setOrientation(RecyclerView.VERTICAL);
-
-        binding.rv.setLayoutManager(manager);
-        binding.rv.addItemDecoration(new VerticalSpacingItemDecorator(25));
-        adapter = new CustomRecycleAdapter(data);
-        binding.rv.setAdapter(adapter);
-
-    }*/
     }
 
 }

@@ -17,8 +17,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.mahmoud.todoapp.adapter.ContactDetailsAdapter
 import com.mahmoud.todoapp.model.Contact
+import com.mahmoud.todoapp.util.Constants
 import com.mahmoud.todoapp.util.LocationHelper
 import com.mahmoud.todoapp.util.LocationManager
+import com.mahmoud.todoapp.util.NotificationHelper
 import kotlinx.android.synthetic.main.activity_details_events.*
 
 
@@ -34,6 +36,9 @@ class DetailsEventsActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_details_events)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
+        hideNotification()
+
+
         locationHelper = LocationHelper(this, object : LocationManager {
 
             override fun onLocationChanged(location: Location?) {
@@ -131,5 +136,12 @@ class DetailsEventsActivity : AppCompatActivity(), OnMapReadyCallback {
         locationHelper.stopLocationUpdates()
     }
 
+
+    private fun hideNotification(){
+        val notificationHelper = NotificationHelper(this)
+        if (intent?.extras?.getBoolean("cancel") == true) {
+            notificationHelper.getManager()?.cancel(Constants.NOTIFICATION_EVENT)
+        }
+    }
 
 }

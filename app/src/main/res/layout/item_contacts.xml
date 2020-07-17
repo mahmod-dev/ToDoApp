@@ -34,7 +34,7 @@
             android:layout_toEndOf="@id/tvIcon"
             android:textColor="@color/colorPrimaryDark"
             android:textDirection="locale"
-            android:textSize="18sp"
+            android:textSize="16sp"
             tools:text="Name" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:singleLine="true"
             android:textDirection="locale"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
+            android:textSize="13sp"
             tools:text="Number" />
 
 
