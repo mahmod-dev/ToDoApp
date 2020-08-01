@@ -20,7 +20,7 @@
         android:drawablePadding="6dp"
         android:drawableTint="@color/colorPrimary"
         android:textDirection="locale"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/bold"
         android:text="Today"
         android:textColor="@color/gray"
         android:textSize="18dp" />
@@ -41,7 +41,7 @@
         android:layout_marginBottom="24dp"
         android:drawableStart="@drawable/ic_task_menu"
         android:drawablePadding="6dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/bold"
         android:text="Others"
         android:textColor="@color/gray"
         android:textSize="18sp" />

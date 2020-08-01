@@ -36,7 +36,7 @@
             android:textSize="24sp"
             android:textColor="@color/white"
             android:textDirection="locale"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/bold"
             android:text="@string/mahmoud_aldous" />
 
         <TextView
@@ -46,7 +46,7 @@
             android:textColor="@color/white_light"
             android:textSize="14sp"
             android:textDirection="locale"
-            android:fontFamily="@font/montserrat_regular"
+            android:fontFamily="@font/regular"
             android:text="@string/my_email" />
 
 

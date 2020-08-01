@@ -16,6 +16,6 @@ class TestActivity : AppCompatActivity() {
 
         val notificationHelper = NotificationHelper(this)
         val nb = notificationHelper.createNotification("titttle", true)
-        notificationHelper.getManager()!!.notify(Constants.NOTIFICATION_EVENT, nb.build())
+        //notificationHelper.getManager()!!.notify(Constants.NOTIFICATION_EVENT, nb.build())
     }
 }

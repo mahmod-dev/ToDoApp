@@ -4,15 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_light">
-
+    android:background="@color/white">
 
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         android:background="@color/white_light"
+        android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -24,18 +23,19 @@
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.AppBarOverlay"
                 android:background="@drawable/sh_toolbar"
-                android:backgroundTint="@color/colorPrimary"/>
+                android:backgroundTint="@color/colorPrimary"
+                app:popupTheme="@style/AppTheme.AppBarOverlay" />
 
 
             <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fabBellTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
                 android:cropToPadding="true"
                 android:src="@drawable/ic_bell"
                 app:elevation="10dp"
@@ -44,23 +44,22 @@
                 app:fab_colorPressed="@color/purple_dark"
                 app:fab_progress_showBackground="true"
                 app:fab_showAnimation="@anim/fab_scale_up"
-                app:fab_showShadow="true"
-                 />
+                app:fab_showShadow="true" />
+
             <ImageView
-                android:id="@+id/imgArrowBack"
+                android:id="@+id/imgArrowBackTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|top"
-                android:src="@drawable/ic_icons_light_arrow_back"
-                android:padding="6dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/sh_ripple"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/sh_ripple"/>
+                android:padding="6dp"
+                android:src="@drawable/ic_icons_light_arrow_back" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
 
 
     <androidx.core.widget.NestedScrollView
@@ -81,28 +80,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="14dp"
-                    android:gravity="center"
                     android:clickable="true"
                     android:focusable="true"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/fabDaily"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:src="@drawable/ic_task_everyday"
                         app:fabCustomSize="50dp"
                         app:fab_colorNormal="@color/colorPrimary"
-                        app:fab_colorPressed="@color/purple_dark_2"
+                        app:fab_colorPressed="@color/colorPrimary_light"
                         app:fab_progress_showBackground="true"
                         app:fab_showAnimation="@anim/fab_scale_up"
                         app:fab_showShadow="true"
@@ -110,10 +110,11 @@
                         />
 
                     <TextView
+                        android:id="@+id/tvDaily"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/regular"
                         android:text="@string/daily"
                         android:textColor="@color/colorPrimary" />
                 </LinearLayout>
@@ -122,12 +123,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="14dp"
-                    android:gravity="center"
                     android:clickable="true"
                     android:focusable="true"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/fabWork"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -136,18 +138,18 @@
                         app:elevation="10dp"
                         app:fabCustomSize="50dp"
                         app:fab_colorNormal="@color/colorPrimary_light"
-                        app:fab_colorPressed="@color/purple_dark_2"
+                        app:fab_colorPressed="@color/colorPrimary_light"
                         app:fab_progress_showBackground="true"
                         app:fab_showAnimation="@anim/fab_scale_up"
-                        app:fab_showShadow="true"
-                        />
+                        app:fab_showShadow="true" />
 
 
                     <TextView
+                        android:id="@+id/tvWork"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/regular"
                         android:text="@string/works"
                         android:textColor="@color/gray_light" />
                 </LinearLayout>
@@ -162,6 +164,7 @@
 
 
                     <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/fabHome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -170,16 +173,16 @@
                         app:elevation="10dp"
                         app:fabCustomSize="50dp"
                         app:fab_colorNormal="@color/colorPrimary_light"
-                        app:fab_colorPressed="@color/purple_dark_2"
+                        app:fab_colorPressed="@color/colorPrimary_light"
                         app:fab_progress_showBackground="true"
                         app:fab_showAnimation="@anim/fab_scale_up"
-                        app:fab_showShadow="true"
-                        />
+                        app:fab_showShadow="true" />
 
                     <TextView
+                        android:id="@+id/tvHome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/regular"
                         android:text="@string/home"
                         android:textColor="@color/gray_light" />
                 </LinearLayout>
@@ -196,6 +199,8 @@
 
 
                     <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/fabFriends"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -204,16 +209,16 @@
                         app:elevation="10dp"
                         app:fabCustomSize="50dp"
                         app:fab_colorNormal="@color/colorPrimary_light"
-                        app:fab_colorPressed="@color/purple_dark"
+                        app:fab_colorPressed="@color/colorPrimary_light"
                         app:fab_progress_showBackground="true"
                         app:fab_showAnimation="@anim/fab_scale_up"
-                        app:fab_showShadow="true"
-                        />
+                        app:fab_showShadow="true" />
 
                     <TextView
+                        android:id="@+id/tvFriends"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/regular"
                         android:text="@string/friends"
                         android:textColor="@color/gray_light" />
                 </LinearLayout>
@@ -226,19 +231,19 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="18dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/sh_corner"
                 android:clickable="true"
                 android:drawablePadding="3dp"
                 android:drawableTint="@color/white"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/bold"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/title"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -248,120 +253,165 @@
                 android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp">
-            <EditText
-                android:id="@+id/etTaskBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="title"
-                android:background="@drawable/sh_title"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="start|center"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@null"
-                android:textDirection="locale"
-                android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/etTaskBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="title"
+                    android:background="@drawable/sh_title"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/bold"
+                    android:gravity="start|center"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:textDirection="locale"
+                    android:textSize="20sp" />
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/sh_corner"
                 android:clickable="true"
                 android:drawableStart="@drawable/ic_details"
                 android:drawablePadding="3dp"
                 android:drawableTint="@color/white"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/bold"
                 android:gravity="center"
                 android:text="@string/more_details"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="@color/white_light"
-                app:cardCornerRadius="20dp">
+                android:clickable="true"
+                android:focusable="true"
+                android:theme="@style/SelectableItemTheme"
+                app:cardBackgroundColor="@color/colorPrimary_light"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
 
-                <androidx.core.widget.NestedScrollView
-                    android:id="@+id/scrollView"
+                >
+
+                <EditText
+                    android:id="@+id/etDetailsTask"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:fillViewport="true"
-                    android:overScrollMode="always">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fontFamily="@font/regular"
+                    android:gravity="top"
+                    android:hint="@string/more_details"
+                    android:lines="6"
+                    android:padding="16dp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:textDirection="locale"
+                    android:textSize="18sp" />
+            </com.google.android.material.card.MaterialCardView>
 
-                    <com.chinalwb.are.AREditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:hint="@string/more_details"
-                        android:inputType="textMultiLine"
-                        android:textColor="@color/black"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textCursorDrawable="@null"
-                        android:textSize="50sp" />
-                </androidx.core.widget.NestedScrollView>
-            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tvMap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="22dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/sh_corner"
                 android:drawableStart="@drawable/ic_icons_dark_user"
                 android:drawablePadding="3dp"
                 android:drawableTint="@color/white"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/bold"
                 android:gravity="center"
                 android:text="@string/photo"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:foreground="@color/foreground_blur"
-                app:cardBackgroundColor="@color/purple_dark_2"
-                app:cardCornerRadius="20dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imgTask"
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:layout_below="@+id/tvTaskDetails"
-                    android:background="?attr/selectableItemBackground"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
                     android:clickable="true"
-                    android:contentDescription="Image"
                     android:focusable="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_add_pic"
-                    android:tint="@color/white_light"
-                    android:visibility="visible" />
+                    android:theme="@style/SelectableItemTheme"
+                    app:cardBackgroundColor="@color/colorPrimary_light"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp">
 
-            </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/imgAddTask"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvTaskDetails"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:contentDescription="Image"
+                        android:focusable="true"
+                        android:foreground="@color/foreground_blur"
+                        android:scaleType="fitCenter"
+                        android:visibility="visible" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/carAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:theme="@style/SelectableItemTheme"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAdd"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="@color/foreground_blur"
+                        android:src="@drawable/ic_add_pic" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="22dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -371,11 +421,11 @@
                     android:drawableStart="@drawable/ic_location"
                     android:drawablePadding="3dp"
                     android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/bold"
                     android:gravity="center"
                     android:text="@string/map"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <com.google.android.gms.maps.MapView
                     android:id="@+id/mapTask"
@@ -390,101 +440,236 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="22dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="32dp"
-                android:gravity="start"
-                android:orientation="vertical">
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/sh_corner"
-                    android:drawableStart="@drawable/ic_icons_dark_time"
-                    android:drawablePadding="3dp"
-                    android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="center"
-                    android:text="@string/time"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tvStartTime"
-                    style="@style/SelectableItemBackground"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="@drawable/sh_border"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:gravity="start"
-                    android:padding="6dp"
-                    android:text="@string/time"
-                    android:textColor="@color/black"
-                    android:textDirection="locale"
-                    android:textSize="18sp" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:background="@drawable/sh_corner"
-                    android:drawableStart="@drawable/ic_calendar"
-                    android:drawablePadding="3dp"
-                    android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/date"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvStartDate"
-                    style="@style/SelectableItemBackground"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/timeShape"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:background="@drawable/sh_corner"
+                        android:drawableStart="@drawable/ic_icons_dark_time"
+                        android:drawablePadding="3dp"
+                        android:drawableTint="@color/white"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="@string/time"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvTaskTime"
+                        style="@style/SelectableItemBackground"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/regular"
+                        android:foreground="@drawable/sh_border"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/choose_time"
+                        android:textColor="@color/purple_dark_2"
+                        android:textDirection="locale"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimaryDark" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:foreground="@drawable/sh_border"
-                    android:drawableTint="@color/white"
-                    android:focusable="true"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:gravity="start"
-                    android:padding="6dp"
-                    android:text="@string/date"
-                    android:textColor="@color/black"
-                    android:textDirection="locale"
-                    android:textSize="18sp" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/dateShape"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_gravity="start"
+                        android:background="@drawable/sh_corner"
+                        android:drawableStart="@drawable/ic_calendar"
+                        android:drawablePadding="3dp"
+                        android:drawableTint="@color/white"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="@string/date"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvTaskDate"
+                        style="@style/SelectableItemBackground"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/regular"
+                        android:foreground="@drawable/sh_border"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/choose_date"
+                        android:textColor="@color/purple_dark_2"
+                        android:textDirection="locale"
+                        android:textSize="14sp" />
 
 
-
+                </LinearLayout>
 
             </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerReminder"
+                style="@style/SelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/sh_border"
+                android:padding="10dp"
+
+
+                >
+
+                <ImageView
+                    android:id="@+id/imgArrowRepeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_expand_left"
+                    android:tint="@color/purple_dark_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:drawableStart="@drawable/ic_repeat"
+                    android:drawablePadding="3dp"
+                    android:drawableTint="@color/purple_dark_2"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:text="@string/reminder"
+                    android:textColor="@color/purple_dark_2"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvReminderTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@+id/imgArrowRepeat"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:text="@string/without_repeat"
+                    android:textColor="@color/purple_dark_2"
+                    android:textDirection="locale"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerRingtone"
+                style="@style/SelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/sh_border"
+                android:padding="10dp"
+
+                >
+
+                <ImageView
+                    android:id="@+id/imgArrowRingTone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_expand_left"
+                    android:tint="@color/purple_dark_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:drawableStart="@drawable/ic_bell_icon"
+                    android:drawablePadding="3dp"
+                    android:drawableTint="@color/purple_dark_2"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:text="@string/ringtone"
+                    android:textColor="@color/purple_dark_2"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvRingtoneTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@+id/imgArrowRingTone"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:text="@string/notification_ringtone"
+                    android:textColor="@color/purple_dark_2"
+                    android:textDirection="locale"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
 
 
             <Button
                 android:id="@+id/btnTasksDetailsEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="27dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/sh_btn_corner"
                 android:clickable="true"
                 android:focusable="true"
+                android:fontFamily="@font/regular"
                 android:padding="16dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/montserrat_regular"
                 android:text="@string/add_task"
                 android:textColor="@color/white" />
         </LinearLayout>

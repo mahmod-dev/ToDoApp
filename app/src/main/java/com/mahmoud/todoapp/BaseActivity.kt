@@ -14,13 +14,13 @@ import com.mahmoud.todoapp.fragments.TasksFragment
 import com.mahmoud.todoapp.util.Constants
 import com.mahmoud.todoapp.util.LocaleHelper
 import com.mahmoud.todoapp.util.MyPreferences
-import com.yariksoffice.lingver.Lingver
+import com.mahmoud.todoapp.util.ViewAnimation
 import kotlinx.android.synthetic.main.activity_base.*
-import java.util.*
+
 
 open class BaseActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
-    private var mCurrentLocale: Locale? = null
+    var isRotateFab = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,17 +28,20 @@ open class BaseActivity : AppCompatActivity(),
         setContentView(R.layout.activity_base)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
         MyPreferences.context = this
-        //MyPreferences.setStr(Constants.LANGUAGE, Constants.ARABIC)
+
+        handleFabButton()
+
+
+        nav_view.setCheckedItem(R.id.menuHome)
 
 
         btnLocale.setOnClickListener {
-            if (MyPreferences.getStr(Constants.LANGUAGE).equals(Constants.ENGLISH)){
+            if (MyPreferences.getStr(Constants.LANGUAGE).equals(Constants.ENGLISH)) {
                 MyPreferences.setStr(Constants.LANGUAGE, Constants.ARABIC)
                 LocaleHelper.setNewLocale(this, MyPreferences.getStr(Constants.LANGUAGE)!!)
 
-            }else{
+            } else {
                 MyPreferences.setStr(Constants.LANGUAGE, Constants.ENGLISH)
                 LocaleHelper.setNewLocale(this, MyPreferences.getStr(Constants.LANGUAGE)!!)
             }
@@ -53,16 +56,25 @@ open class BaseActivity : AppCompatActivity(),
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-        drawer_layout.addDrawerListener(toggle);
+        drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         ///////////////////
-
         fabTask.setOnClickListener {
             val intent = Intent(this@BaseActivity, AddTasksActivity::class.java)
             startActivity(intent)
         }
 
+        containerFabTask.setOnClickListener {
+            val intent = Intent(this@BaseActivity, AddTasksActivity::class.java)
+            startActivity(intent)
+        }
+
         fabEvent.setOnClickListener {
+            val intent = Intent(this@BaseActivity, AddEventsActivity::class.java)
+            startActivity(intent)
+        }
+
+        containerFabEvent.setOnClickListener {
             val intent = Intent(this@BaseActivity, AddEventsActivity::class.java)
             startActivity(intent)
         }
@@ -98,4 +110,32 @@ open class BaseActivity : AppCompatActivity(),
         return true
     }
 
+
+    private fun handleFabButton() {
+        ViewAnimation.init(containerFabTask)
+        ViewAnimation.init(containerFabEvent)
+
+        baseFab.setOnClickListener {
+            isRotateFab = ViewAnimation.rotateFab(it, !isRotateFab);
+
+            if (isRotateFab) {
+                ViewAnimation.showIn(containerFabEvent)
+                ViewAnimation.showIn(containerFabTask)
+            } else {
+                ViewAnimation.showOut(containerFabTask)
+                ViewAnimation.showOut(containerFabEvent)
+            }
+
+        }
+    }
+
+//    override fun onBackPressed() {
+//        if (!isRotateFab) {
+//            super.onBackPressed()
+//        } else {
+//
+//            ViewAnimation.showOut(containerFabTask)
+//            ViewAnimation.showOut(containerFabEvent)
+//        }
+//    }
 }

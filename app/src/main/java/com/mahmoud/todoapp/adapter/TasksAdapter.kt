@@ -58,7 +58,7 @@ class TasksAdapter(var data: ArrayList<Task>) :
         RecyclerView.ViewHolder(itemView) {
         var cardTask: CardView = itemView.cardTask
         var imgTaskBell: ImageView = itemView.imgTaskBell
-        var imgTask: ImageView = itemView.imgTask
+        var imgTask: ImageView = itemView.imgAddTask
         var imgTaskDelete: ImageView = itemView.imgTaskDelete
         var tvTaskTitle: TextView = itemView.tvTaskTitle
         var tvTaskCreatedDate: TextView = itemView.tvTaskCreatedDate

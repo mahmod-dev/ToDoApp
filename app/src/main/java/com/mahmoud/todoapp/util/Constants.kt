@@ -1,8 +1,8 @@
 package com.mahmoud.todoapp.util
 
+import android.content.Context
 import android.text.format.DateUtils
-
-
+import com.mahmoud.todoapp.R
 
 
 object Constants {
@@ -12,18 +12,33 @@ object Constants {
     const val NOTIFICATION_EVENT = 22
     const val NOTIFICATION_TASK = 33
     const val NOTIFICATION_TIME = "notification_time"
-    const  val LANGUAGE = "lan"
+    const val LANGUAGE = "lan"
     const val ENGLISH = "en"
     const val ARABIC = "ar"
 
 
-     const val SECOND_MILLIS = 1000
-     const val MINUTE_MILLIS = 60 * SECOND_MILLIS
-     const val HOUR_MILLIS = 60 * MINUTE_MILLIS
-     const val DAY_MILLIS = 24 * HOUR_MILLIS
+    const val SECOND_MILLIS = 1000
+    const val MINUTE_MILLIS = 60 * SECOND_MILLIS
+    const val NINE_MINUTE_MILLIS = 9 * MINUTE_MILLIS
+    const val HOUR_MILLIS = 60 * MINUTE_MILLIS
+    const val DAY_MILLIS = 24 * HOUR_MILLIS
     const val AVERAGE_MONTH_IN_MILLIS = DateUtils.DAY_IN_MILLIS * 30
 
-    public fun colors( ): ArrayList<String> {
+
+    public fun eventRepeatList(context: Context): Array<String> {
+        return arrayOf(
+            context.resources.getString(R.string.before_10_min),
+            context.resources.getString(R.string.before_20_min),
+            context.resources.getString(R.string.before_1_hour),
+            context.resources.getString(R.string.before_2_hour),
+            context.resources.getString(R.string.before_1_day),
+            context.resources.getString(R.string.before_1_weak)
+        )
+    }
+
+    val checkedItems = booleanArrayOf(true, false, false, false, false, false)
+
+    public fun colors(): ArrayList<String> {
         val colors: ArrayList<String> = ArrayList()
         colors.add("#000000")
         colors.add("#4a148c")
@@ -50,7 +65,7 @@ object Constants {
         colors.add("#f50057")
 
 
-     return colors
+        return colors
     }
 
 }

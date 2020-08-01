@@ -79,11 +79,11 @@ class ProfileFragment : Fragment() {
         )
         chart?.legend?.textColor = Color.WHITE
         chart?.centerText = "Tasks during this month"
-        chart?.setCenterTextTypeface(ResourcesCompat.getFont(context!!, R.font.montserrat_bold))
+        chart?.setCenterTextTypeface(ResourcesCompat.getFont(context!!, R.font.bold))
         chart?.setEntryLabelTypeface(
             ResourcesCompat.getFont(
                 context!!,
-                R.font.montserrat_regular
+                R.font.regular
             )
 
         )

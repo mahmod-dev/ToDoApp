@@ -40,8 +40,44 @@
     <string name="event">Event</string>
     <string name="events">Events</string>
     <string name="profile">Profile</string>
-    <string name="search">search ...</string>
-    <string name="cancel">cancel</string>
+    <string name="search">search …</string>
+    <string name="cancel">Cancel</string>
+    <string name="reminder">Reminder</string>
+    <string name="without_repeat">Without Repeat</string>
+    <string name="repeat">Repeat</string>
+    <string name="select_repetition">select repetition</string>
+    <string name="ok">OK</string>
+
+
+    <string name="before_10_min">before 10 minutes</string>
+    <string name="before_20_min">before 20 minutes</string>
+    <string name="before_1_hour">before 1 hour</string>
+    <string name="before_2_hour">before 2 hours</string>
+    <string name="before_1_day">before 1 day</string>
+    <string name="before_1_weak">before 1 weak</string>
+    <string name="choose_pic">Choose picture</string>
+    <string name="take_photo">Take photo</string>
+    <string name="choose_gallery">Choose from Gallery</string>
+    <string name="notification_ringtone">Notification tone</string>
+    <string name="add_reminder">Add reminder</string>
+    <string name="weekly">Weekly</string>
+    <string name="yearly">Yearly</string>
+    <string name="monthly">Monthly</string>
+    <string name="alarm_tone">Alarm tone</string>
+    <string name="ringtone">Ringtone</string>
+    <string name="select_tone">Select a tone</string>
+    <string name="please_wait">Please wait …</string>
+    <string name="title_is_empty">Empty title!</string>
+    <string name="choose_time">Choose time</string>
+    <string name="choose_date">Choose date</string>
+    <string name="without_tone">Without tone</string>
+    <string name="invalid_date">Invalid date</string>
+    <string name="select_start_date_before">Select start date before!</string>
+    <string name="select_end_date_before">Select end date before!</string>
+    <string name="select_start_time_before">Select start time before!</string>
+    <string name="invalid_time">Invalid time!</string>
+    <string name="too_short_period">Too short period!</string>
+    <string name="at_least">At least</string>
 
 
 </resources>

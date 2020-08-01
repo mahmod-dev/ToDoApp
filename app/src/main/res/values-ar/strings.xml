@@ -34,4 +34,43 @@
     <string name="task">مهمة</string>
     <string name="event">حدث</string>
     <string name="cancel">إنهاء</string>
+    <string name="reminder">تذكير</string>
+    <string name="repeat"> التكرار</string>
+    <string name="without_repeat">بدون تكرار</string>
+
+    <string name="ok">تم</string>
+
+    <string name="select_repetition">اختيار التكرار</string>
+    <string name="before_10_min">قبل 10 دقايق</string>
+    <string name="before_20_min">قبل 20 دقيقة</string>
+    <string name="before_1_hour">قبل ساعة</string>
+    <string name="before_2_hour">قبل ساعتين</string>
+    <string name="before_1_day">قبل يوم</string>
+    <string name="before_1_weak">قبل أسبوع</string>
+
+    <string name="choose_pic">اختار صورة</string>
+    <string name="take_photo">التقاط صورة</string>
+    <string name="choose_gallery">اختار من الاستوديو</string>
+
+    <string name="add_reminder">اضافة تذكير</string>
+    <string name="weekly">أسبوعيا</string>
+    <string name="yearly">سنويا</string>
+    <string name="monthly">شهريا</string>
+
+    <string name="select_tone">تحديد نغمة</string>
+    <string name="notification_ringtone">نغمة الإشعارات</string>
+    <string name="alarm_tone">نغمة المنبه</string>
+    <string name="ringtone">نغمة الرنين</string>
+    <string name="please_wait">الرجاء الانتظار …</string>
+    <string name="title_is_empty">العنوان فارغ!</string>
+    <string name="choose_time">اختر الوقت!</string>
+    <string name="choose_date">اختر التاريخ!</string>
+    <string name="without_tone">بدون نغمة</string>
+    <string name="invalid_date">تاريخ غير صالح</string>
+    <string name="select_start_date_before">Select start date before!</string>
+    <string name="select_end_date_before">Select end date before!</string>
+    <string name="select_start_time_before">Select start time before!</string>
+    <string name="invalid_time">Invalid time!</string>
+    <string name="too_short_period">Too short period!</string>
+    <string name="at_least">At least</string>
 </resources>

@@ -26,8 +26,8 @@ import kotlinx.coroutines.*
 
 class NotificationHelper(base: Context?) : ContextWrapper(base) {
 
-    val channelID = "channelID"
-    val channelName = "Channel Name"
+    private val channelID = "channelID"
+    private val channelName = "Channel Name"
     private var mManager: NotificationManager? = null
 
     init {
@@ -64,7 +64,7 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
             .setWhen(System.currentTimeMillis())
 
         if (isCustom) {
-            return builder.handleCustomNotification( true)
+            return builder.handleCustomNotification(true)
 
         }
 
@@ -177,7 +177,7 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
 
 
     private fun NotificationCompat.Builder.handleExpandNotification(): NotificationCompat.Builder {
-        val bitmap = BitmapFactory.decodeResource(resources, R.mipmap.profile_demo)
+        val bitmap = BitmapFactory.decodeResource(resources, R.mipmap.map_demo)
 
         val notificationLayoutExpanded = RemoteViews(packageName, R.layout.expnad_notification_item)
         setCustomBigContentView(notificationLayoutExpanded)

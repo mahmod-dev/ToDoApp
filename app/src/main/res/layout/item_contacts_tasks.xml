@@ -11,7 +11,7 @@
         android:padding="6dp"
         android:textColor="@color/white"
         android:layout_margin="4dp"
-        android:fontFamily="@font/montserrat_regular"
+        android:fontFamily="@font/regular"
         android:background="@drawable/sh_primary_circle"
         android:text="Mahmoud I. Aldous"/>
 </RelativeLayout>

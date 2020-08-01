@@ -14,7 +14,9 @@
     <color name="gray_more_light">#8DC6C5C5</color>
     <color name="gray_item_background">#f2f2f2</color>
     <color name="colorPrimary_light">#518A56AC</color>
+    <color name="colorPrimary_light_2">#51D8BBEC</color>
     <color name="foreground_blur">#57FFFFFF</color>
+    <color name="mtrl_textinput_default_box_stroke_color">@color/colorPrimary</color>
 
     <color name="transparent">#00000000</color>
 

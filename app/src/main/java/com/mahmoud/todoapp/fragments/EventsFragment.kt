@@ -34,8 +34,10 @@ class EventsFragment : Fragment() {
         val data = ArrayList<Event>()
         data.add(
             Event(
-                "عمل هام", "تفاصيل العمل الهام", "12:18 Pm", "1:15 Pm", "11 June", "12 June"
-                , 0.0, 0.0, "11 June", true
+                "عمل هام", "تفاصيل العمل الهام", "12:18 Pm", "1:15 Pm",
+                "11 June", "12 June",
+                "11 June", "12 June",
+                0.0, 0.0, "11 June", true
             )
         )
         initRecycleView(data)

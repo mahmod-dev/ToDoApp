@@ -16,7 +16,6 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,18 +30,19 @@
                 app:popupTheme="@style/AppTheme.AppBarOverlay" />
 
             <ImageView
-                android:id="@+id/imgArrowBack"
+                android:id="@+id/imgArrowBackEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|top"
-                android:src="@drawable/ic_icons_light_arrow_back"
-                android:padding="6dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/sh_ripple"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/sh_ripple"/>
+                android:padding="6dp"
+                android:src="@drawable/ic_icons_light_arrow_back" />
 
             <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fabBellEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -59,7 +59,6 @@
                 app:fab_showAnimation="@anim/fab_scale_up"
                 app:fab_showShadow="true"
                 app:useCompatPadding="true" />
-
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -94,41 +93,34 @@
                 android:drawablePadding="3dp"
                 android:drawableTint="@color/white"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/bold"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/title"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
-            <androidx.cardview.widget.CardView
+
+            <EditText
+                android:id="@+id/etTitleEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="10dp">
-
-                <EditText
-                    android:id="@+id/etEventBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:autofillHints="title"
-                    android:background="@drawable/sh_title"
-                    android:backgroundTint="@color/white"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="start|center"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:paddingStart="10dp"
-                    android:textColor="@color/black"
-                    android:textCursorDrawable="@null"
-                    android:textDirection="locale"
-                    android:textSize="22sp" />
-            </androidx.cardview.widget.CardView>
+                android:alpha="0.9"
+                android:autofillHints="title"
+                android:background="@drawable/sh_item_corner"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/bold"
+                android:gravity="start|center"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@null"
+                android:textDirection="locale"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,41 +134,45 @@
                 android:drawablePadding="3dp"
                 android:drawableTint="@color/white"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/bold"
                 android:gravity="center"
                 android:text="@string/description"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="@color/white_light"
-                app:cardCornerRadius="20dp">
+                android:clickable="true"
+                android:focusable="true"
+                android:theme="@style/SelectableItemTheme"
+                app:cardBackgroundColor="@color/colorPrimary_light"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
 
-                <androidx.core.widget.NestedScrollView
-                    android:id="@+id/scrollView"
+                >
+
+                <EditText
+                    android:id="@+id/etDetailsEvent"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:fillViewport="true"
-                    android:overScrollMode="always">
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:background="@color/white"
+                    android:fontFamily="@font/regular"
+                    android:gravity="top"
+                    android:hint="@string/more_details"
+                    android:lines="6"
+                    android:padding="16dp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:textDirection="locale"
+                    android:textSize="18sp" />
+            </com.google.android.material.card.MaterialCardView>
 
-                    <com.chinalwb.are.AREditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:hint="@string/more_details"
-                        android:inputType="textMultiLine"
-                        android:textColor="@color/black"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textCursorDrawable="@null"
-                        android:textSize="50sp" />
-                </androidx.core.widget.NestedScrollView>
-            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tvMap"
@@ -189,32 +185,79 @@
                 android:drawableStart="@drawable/ic_photo"
                 android:drawablePadding="3dp"
                 android:drawableTint="@color/white"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/bold"
                 android:gravity="center"
                 android:text="@string/photo"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
-            <androidx.cardview.widget.CardView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="@color/white_light"
-                app:cardCornerRadius="20dp">
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imgAddEvent"
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_below="@+id/tvEventDetails"
-                    android:contentDescription="Image"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_add_pic"
-                    android:visibility="visible" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:theme="@style/SelectableItemTheme"
+                    app:cardBackgroundColor="@color/colorPrimary_light"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
 
-            </androidx.cardview.widget.CardView>
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgAddEvent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvTaskDetails"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:contentDescription="Image"
+                        android:focusable="true"
+                        android:foreground="@color/foreground_blur"
+                        android:scaleType="fitCenter"
+                        android:visibility="visible" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/carAddE"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:alpha="0.9"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:theme="@style/SelectableItemTheme"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAddE"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="@color/foreground_blur"
+                        android:src="@drawable/ic_add_pic" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
 
 
             <LinearLayout
@@ -232,11 +275,11 @@
                     android:drawableStart="@drawable/ic_location"
                     android:drawablePadding="3dp"
                     android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/bold"
                     android:gravity="center"
                     android:text="@string/map"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <com.google.android.gms.maps.MapView
                     android:id="@+id/mapEvent"
@@ -265,11 +308,11 @@
                     android:drawableStart="@drawable/ic_icons_dark_user"
                     android:drawablePadding="3dp"
                     android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/bold"
                     android:gravity="center"
                     android:text="@string/persons"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tvAddPersons"
@@ -284,13 +327,13 @@
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/white"
                     android:focusable="true"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/regular"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="6dp"
                     android:text="@string/add_persons"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     tools:listitem="@layout/item_contacts_event" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -300,84 +343,12 @@
                     android:layout_marginStart="22dp"
                     android:layout_marginTop="8dp"
                     android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/regular"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:textColor="@color/white_light"
-                    android:textSize="18sp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_contacts_event" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:background="@drawable/sh_corner"
-                    android:drawableStart="@drawable/ic_icons_dark_time"
-                    android:drawablePadding="3dp"
-                    android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="center"
-                    android:text="@string/time"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvStartTime"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:drawableTint="@color/white"
-                        android:focusable="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:foreground="@drawable/sh_border"
-                        android:gravity="center"
-                        android:padding="6dp"
-                        android:text="@string/start_time"
-                        android:textColor="@color/white_light"
-                        android:textDirection="locale"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_weight="0.2"
-                        android:gravity="center"
-                        android:text="|"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:id="@+id/tvEndTime"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight="1"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:drawableTint="@color/white"
-                        android:focusable="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:foreground="@drawable/sh_border"
-                        android:gravity="center"
-                        android:padding="6dp"
-                        android:text="@string/end_time"
-                        android:textColor="@color/white_light"
-                        android:textDirection="locale"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -387,11 +358,11 @@
                     android:drawableStart="@drawable/ic_calendar"
                     android:drawablePadding="3dp"
                     android:drawableTint="@color/white"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/bold"
                     android:gravity="center"
                     android:text="@string/date"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -400,6 +371,7 @@
 
                     <TextView
                         android:id="@+id/tvStartDate"
+                        style="@style/SelectableItemBackground"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -410,26 +382,28 @@
                         android:clickable="true"
                         android:drawableTint="@color/white"
                         android:focusable="true"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/regular"
                         android:foreground="@drawable/sh_border"
                         android:gravity="center"
                         android:padding="6dp"
                         android:text="@string/start_date"
                         android:textColor="@color/white_light"
                         android:textDirection="locale"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
                         android:layout_weight="0.2"
                         android:gravity="center"
                         android:text="|"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white_light" />
 
                     <TextView
                         android:id="@+id/tvEndDate"
+                        style="@style/SelectableItemBackground"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -439,22 +413,213 @@
                         android:clickable="true"
                         android:drawableTint="@color/white"
                         android:focusable="true"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/regular"
                         android:foreground="@drawable/sh_border"
                         android:gravity="center"
                         android:padding="6dp"
                         android:text="@string/end_date"
                         android:textColor="@color/white_light"
                         android:textDirection="locale"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/sh_corner"
+                    android:drawableStart="@drawable/ic_icons_dark_time"
+                    android:drawablePadding="3dp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:text="@string/time"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:theme="@style/Theme.AppCompat.Light">
+
+                    <TextView
+                        android:id="@+id/tvStartTime"
+                        style="@style/SelectableItemBackground"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTint="@color/white"
+                        android:focusable="true"
+                        android:fontFamily="@font/regular"
+                        android:foreground="@drawable/sh_border"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="@string/start_time"
+                        android:textColor="@color/white_light"
+                        android:textDirection="locale"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:text="|"
+                        android:textColor="@color/white_light" />
+
+                    <TextView
+                        android:id="@+id/tvEndTime"
+                        style="@style/SelectableItemBackground"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTint="@color/white"
+                        android:focusable="true"
+                        android:fontFamily="@font/regular"
+                        android:foreground="@drawable/sh_border"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="@string/end_time"
+                        android:textColor="@color/white_light"
+                        android:textDirection="locale"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/containerReminder"
+                    style="@style/SelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="22dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="@drawable/sh_border"
+                    android:padding="10dp"
+
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgArrowRepeat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_expand_left"
+                        android:tint="@color/white_light" />
+
+                    <TextView
+                        android:id="@+id/tvRemind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:drawableStart="@drawable/ic_repeat"
+                        android:drawablePadding="3dp"
+                        android:drawableTint="@color/white"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="@string/reminder"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvReminderEvent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@+id/imgArrowRepeat"
+                        android:layout_toEndOf="@+id/tvRemind"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="@string/before_10_min"
+                        android:textColor="@color/white_light"
+                        android:textDirection="locale"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/containerRingtone"
+                    style="@style/SelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="22dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="@drawable/sh_border"
+                    android:padding="10dp"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgArrowRingTone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_expand_left"
+                        android:tint="@color/white_light" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:drawableStart="@drawable/ic_bell_icon"
+                        android:drawablePadding="3dp"
+                        android:drawableTint="@color/white"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="@string/ringtone"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvRingtoneEvent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@+id/imgArrowRingTone"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="@string/notification_ringtone"
+                        android:textColor="@color/white_light"
+                        android:textDirection="locale"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
 
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnEventsAdd"
+                android:id="@+id/btnEventSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -464,7 +629,7 @@
                 android:background="@drawable/sh_btn_corner"
                 android:clickable="true"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/regular"
                 android:padding="16dp"
                 android:text="@string/add_event"
                 android:textColor="@color/white" />
