@@ -49,7 +49,10 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".ContactsActivity" />
+        <activity android:name=".ContactsActivity"
+            android:parentActivityName=".AddEventsActivity">
+
+        </activity>
         <activity
             android:name=".BaseActivity"
             android:theme="@style/AppTheme.NoActionBar" />

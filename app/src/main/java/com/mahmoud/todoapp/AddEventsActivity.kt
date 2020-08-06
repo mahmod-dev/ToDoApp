@@ -40,11 +40,19 @@ import kotlinx.android.synthetic.main.activity_add_events.*
 import java.io.File
 import java.util.*
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.recyclermasterjava.util.Helper.setProgressDialog
+import com.mahmoud.todoapp.adapter.ContactDetailsAdapter
+import com.mahmoud.todoapp.adapter.ContactsAdapter
+import com.mahmoud.todoapp.model.Contact
 import com.mahmoud.todoapp.model.Event
 import com.mahmoud.todoapp.util.Constants.MINUTE_MILLIS
 import com.mahmoud.todoapp.util.Constants.NINE_MINUTE_MILLIS
+import com.mahmoud.todoapp.util.CustomAlertDialog
+import com.mahmoud.todoapp.util.CustomAlertDialog.getDialogInstance
 import com.mahmoud.todoapp.util.DateHelper
+import kotlinx.android.synthetic.main.activity_contacts.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
@@ -72,6 +80,7 @@ class AddEventsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_events)
+        Log.e(TAG, "onCreate: " )
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
         actionBar?.title = "add events"
         calendarTime = Calendar.getInstance()
@@ -79,7 +88,6 @@ class AddEventsActivity : AppCompatActivity() {
         initViewModel()
         isEnable = true
         arrReminderType.add(resources.getString(R.string.before_10_min))
-
         // setupObserver()
         tvStartTime.setOnClickListener {
             setTimeStart()
@@ -164,8 +172,8 @@ class AddEventsActivity : AppCompatActivity() {
     }
 
     private fun setTimeEnd() {
-        val currentHour = calendarTime!!.get(Calendar.HOUR_OF_DAY);
-        val currentMinute = calendarTime!!.get(Calendar.MINUTE);
+        val currentHour = calendarTime!!.get(Calendar.HOUR_OF_DAY)
+        val currentMinute = calendarTime!!.get(Calendar.MINUTE)
         val timePickerDialog = TimePickerDialog(
             this,
             OnTimeSetListener { timePicker, hourOfDay, minutes ->
@@ -206,7 +214,7 @@ class AddEventsActivity : AppCompatActivity() {
 
             }, year, month, day
         )
-        date.datePicker.minDate = System.currentTimeMillis() - 1000;
+        date.datePicker.minDate = System.currentTimeMillis() - 1000
 
         date.show()
 
@@ -442,83 +450,35 @@ class AddEventsActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(
             this, ViewModelFactory(
-                DatabaseHelperImp(AppDatabase.getInstance(applicationContext))
+                DatabaseHelperImp(AppDatabase.getInstance(applicationContext)),application
             )
 
         ).get(EventViewModel::class.java)
     }
 
     private fun setupObserver() {
+        val dialog =  getDialogInstance()
+
         viewModel.getEvents().observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    setProgressDialog().hide()
+                    dialog.dismiss()
                     it.data?.let { users ->
                         finish()
                     }
                 }
                 Status.LOADING -> {
-                    setProgressDialog().show()
+                    dialog.show()
                 }
                 Status.ERROR -> {
                     //Handle Error
-                    setProgressDialog().hide()
+                    dialog.dismiss()
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     Log.e(TAG, "setupObserver: " + it.message)
 
                 }
             }
         })
-    }
-
-    private fun insertEvent() {
-        val title = etTitleEvent.text.toString()
-        val details = etDetailsEvent.text.toString()
-        val startTime = tvStartTime.text.toString()
-        val endTime = tvEndTime.text.toString()
-        val startDate = tvStartDate.text.toString()
-        val endDate = tvEndDate.text.toString()
-
-        if (title.isEmpty()) {
-            etTitleEvent.error = resources.getString(R.string.title_is_empty)
-            return
-        }
-        if (startTime.equals(resources.getString(R.string.start_time))) {
-            tvStartTime.error = resources.getString(R.string.choose_time)
-            return
-        }
-
-        if (endTime.equals(resources.getString(R.string.end_time))) {
-            tvEndTime.error = resources.getString(R.string.choose_time)
-            return
-        }
-
-        if (startDate.equals(resources.getString(R.string.start_date))) {
-            tvStartDate.error = resources.getString(R.string.choose_date)
-            return
-        }
-
-        if (endDate.equals(resources.getString(R.string.end_date))) {
-            tvEndDate.error = resources.getString(R.string.choose_date)
-            return
-        }
-
-
-        val event = Event()
-        event.title = title
-        event.details = details
-        event.timeStart = startTime
-        event.timeEnd = endTime
-        event.dateStart = startDate
-        event.dateEnd = endDate
-        event.reminderRepeat = tvReminderEvent.text.toString()
-        event.ringtone = tvRingtoneEvent.text.toString()
-        event.isEnabledTone = isEnable
-
-        viewModel.insertEvents(event)
-
-        setupObserver()
-
     }
 
     private fun compareStartDate() {
@@ -669,27 +629,112 @@ class AddEventsActivity : AppCompatActivity() {
         return (startDate!!.compareTo(endDate) == 0)
     }
 
-    private fun handleReminderArray(){
+    private fun handleReminderArray() {
         val builder = StringBuilder()
         for (element in arrReminderType) {
-            builder.append(element)
-            builder.append(", ")
-            if (builder.endsWith(", ")) {
-                sub = builder.removeSuffix(", ")
-            }
 
-            if (builder.length >= 20) {
+            if (builder.length >= 15) {
                 builder.append(" ...")
                 break
             }
+            builder.append(element)
+            builder.append(", ")
         }
-        if (sub != null) {
-            tvReminderEvent.text = sub
-            sub = null
 
-        } else {
-            tvReminderEvent.text = builder.toString()
+        if (builder.endsWith(", ")) {
+            builder.deleteCharAt(builder.length - 2)
+        }
+        if (builder.isEmpty()) {
+            checkedItems[0] = true
+            arrReminderType.add(getString(R.string.before_10_min))
+            builder.append(getString(R.string.before_10_min))
+        }
+        tvReminderEvent.text = builder.toString()
+    }
+
+    private fun initRecycleView(list: ArrayList<Contact>) {
+
+        rvContacts.apply {
+            layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.HORIZONTAL, false)
+            val contactsAdapter = ContactDetailsAdapter(list)
+            adapter = contactsAdapter
         }
     }
+    private fun insertEvent() {
+        val title = etTitleEvent.text.toString()
+        val details = etDetailsEvent.text.toString()
+        val startTime = tvStartTime.text.toString()
+        val endTime = tvEndTime.text.toString()
+        val startDate = tvStartDate.text.toString()
+        val endDate = tvEndDate.text.toString()
+
+        if (title.isEmpty()) {
+            etTitleEvent.error = resources.getString(R.string.title_is_empty)
+            return
+        }
+        if (startTime.equals(resources.getString(R.string.start_time))) {
+            tvStartTime.error = resources.getString(R.string.choose_time)
+            return
+        }
+
+        if (endTime.equals(resources.getString(R.string.end_time))) {
+            tvEndTime.error = resources.getString(R.string.choose_time)
+            return
+        }
+
+        if (startDate.equals(resources.getString(R.string.start_date))) {
+            tvStartDate.error = resources.getString(R.string.choose_date)
+            return
+        }
+
+        if (endDate.equals(resources.getString(R.string.end_date))) {
+            tvEndDate.error = resources.getString(R.string.choose_date)
+            return
+        }
+
+
+        val event = Event()
+        event.title = title
+        event.details = details
+        event.timeStart = startTime
+        event.timeEnd = endTime
+        event.dateStart = startDate
+        event.dateEnd = endDate
+        event.reminderRepeat = tvReminderEvent.text.toString()
+        event.ringtone = tvRingtoneEvent.text.toString()
+        event.isEnabledTone = isEnable
+        val list = ArrayList<Contact>()
+        list.add(Contact("Mahmoud", "0597796100", false))
+        list.add(Contact("Ahmad", "059999999", false))
+        list.add(Contact("Sami", "0598x88888", false))
+        list.add(Contact("Ali", "059777777", false))
+        if (!ContactsActivity.contactSelectedList.isNullOrEmpty()){
+            Log.e(TAG, "insertContactsEvent: ${ContactsActivity.contactSelectedList.toString()}" )
+            event.contactList = ContactsActivity.contactSelectedList
+
+        }
+        viewModel.insertEvents(event)
+
+        setupObserver()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.e(TAG, "onStart: " )
+        initRecycleView(ContactsActivity.contactSelectedList)
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.e(TAG, "onRestart: " )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e(TAG, "onResume: " )
+    }
+
 
 }

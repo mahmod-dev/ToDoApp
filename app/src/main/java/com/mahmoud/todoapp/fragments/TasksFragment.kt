@@ -34,8 +34,8 @@ class TasksFragment : Fragment() {
         rvTasks = view.findViewById(R.id.rvTasks);
 
        val data = ArrayList<Task>()
-        data.add(Task("عمل هام","تفاصيل العمل الهام","12:18 Pm","1:15 Pm"
-            ,0.0,0.0,"11 June",true))
+//        data.add(Task("عمل هام","تفاصيل العمل الهام","12:18 Pm","1:15 Pm"
+//            ,0.0,0.0,"11 June",true))
         initRecycleView(data)
 
         tasksAdapter?.setOnClickListener(object :TasksAdapter.OnItemClickListener{

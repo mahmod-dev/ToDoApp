@@ -21,16 +21,23 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.ViewModelProviders
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.mahmoud.todoapp.BuildConfig
 import com.mahmoud.todoapp.R
 import com.mahmoud.todoapp.model.Contact
+import com.mahmoud.todoapp.roomDB.AppDatabase
+import com.mahmoud.todoapp.roomDB.DatabaseHelperImp
+import com.mahmoud.todoapp.util.dbUtil.ViewModelFactory
+import com.mahmoud.todoapp.viewmodel.ContactViewModel
+import io.grpc.android.BuildConfig
 
 
 object Helper {
     val TAG = "Helper"
     fun getContactList(context: Context): ArrayList<Contact> {
+
+
         val data = ArrayList<Contact>()
         try {
             val cr: ContentResolver = context.contentResolver
@@ -91,7 +98,7 @@ object Helper {
     }
 
 
-    fun permissionAlreadyGranted(context: Context, permission: String): Boolean {
+    fun isPermissionAlreadyGranted(context: Context, permission: String): Boolean {
         //   Manifest.permission.CAMERA
         val result: Int =
             ContextCompat.checkSelfPermission(context, permission)

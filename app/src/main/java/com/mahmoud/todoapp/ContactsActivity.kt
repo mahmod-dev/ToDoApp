@@ -7,63 +7,57 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.recyclermasterjava.util.Helper.getContactList
 import com.mahmoud.todoapp.adapter.ContactsAdapter
 import com.mahmoud.todoapp.model.Contact
+import com.mahmoud.todoapp.roomDB.AppDatabase
+import com.mahmoud.todoapp.roomDB.DatabaseHelperImp
+import com.mahmoud.todoapp.util.CustomAlertDialog
+import com.mahmoud.todoapp.util.CustomAlertDialog.getDialogInstance
+import com.mahmoud.todoapp.util.dbUtil.Status
+import com.mahmoud.todoapp.util.dbUtil.ViewModelFactory
+import com.mahmoud.todoapp.viewmodel.ContactViewModel
+import com.mahmoud.todoapp.viewmodel.TaskViewModel
 import kotlinx.android.synthetic.main.activity_contacts.*
 import kotlinx.coroutines.*
 
 
 class ContactsActivity : AppCompatActivity() {
+    companion object {
+        var contactSelectedList = ArrayList<Contact>()
+    }
     private var actionMode: ActionMode? = null
     private var contactsAdapter: ContactsAdapter? = null
     val TAG = "ContactsActivity"
-
+    var dialog: AlertDialog? = null
+    private lateinit var job: Job
+    private lateinit var viewModel: ContactViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contacts)
-        var list = ArrayList<Contact>()
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        initViewModel()
         title = "My Contacts"
-
-
-/*        list.add(Contact("Mahmoud","0597796100",false))
-        list.add(Contact("Ahmad","059999999",false))
-        list.add(Contact("Sami","059888888",false))
-        list.add(Contact("Ali","059777777",false))*/
-
-
-
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val result = async {
-                list = getContactList(this@ContactsActivity)
-
-            }.await()
-
-            withContext(Dispatchers.Main) {
-                Log.e(TAG, list.size.toString())
-
-                initRecycleView( list)
-
-            }
-        }
-
+        contactSelectedList = ArrayList()
+        setupObserver()
 
     }
 
-    private fun initRecycleView(list: ArrayList<Contact>) {
+    private fun initRecycleView(list: List<Contact>) {
 
         rvContact.apply {
             layoutManager = LinearLayoutManager(applicationContext)
             contactsAdapter = ContactsAdapter(list)
             adapter = contactsAdapter
         }
-
 
         contactsAdapter!!.setOnClickListener(object : ContactsAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
@@ -104,6 +98,8 @@ class ContactsActivity : AppCompatActivity() {
                     Log.e(TAG, "onActionItemClicked")
 
                     if (item.itemId == R.id.menuCheck) {
+                        Log.e(TAG, "onActionItemClicked:trueee " )
+                        finish()
                         mode.finish()
                         return true
                     }
@@ -122,17 +118,66 @@ class ContactsActivity : AppCompatActivity() {
                     Log.e(TAG, "onDestroyActionMode")
                 }
             })
+
         contactsAdapter?.toggleSelection(position)
         val size: Int = contactsAdapter?.selectedItems!!.size()
+        val contact = contactsAdapter?.getContacts()!!.get(position)
+        if (contact.isSelected){
+            contactSelectedList.add(contact)
+        }else{
+            contactSelectedList.remove(contact)
+        }
+        Log.e(TAG, "enableActionModeData: $contact")
         if (size == 0) {
             actionMode?.finish()
         } else {
-            actionMode?.setTitle(size.toString() + "")
+            actionMode?.title = size.toString()
             actionMode?.invalidate()
             val bar: ActionBar? = actionBar
-            bar?.setBackgroundDrawable(ColorDrawable(Color.BLACK))
-            bar?.setTitle("sfsdfsdfsdf")
+
         }
     }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProviders.of(
+            this, ViewModelFactory(
+                DatabaseHelperImp(AppDatabase.getInstance(applicationContext)),application
+            )
+
+        ).get(ContactViewModel::class.java)
+    }
+
+    private fun setupObserver() {
+        val dialog =  getDialogInstance()
+        viewModel.getContacts().observe(this@ContactsActivity,
+
+            Observer {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        dialog.dismiss()
+
+                        it.data?.let { users ->
+                           initRecycleView(users)
+                        }
+                    }
+                    Status.LOADING -> {
+                        dialog.show()
+                    }
+                    Status.ERROR -> {
+                        //Handle Error
+                        dialog.dismiss()
+
+                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                        Log.e(TAG, "setupObserver: " + it.message)
+
+                    }
+                }
+
+
+            }
+        )
+
+    }
+
 
 }

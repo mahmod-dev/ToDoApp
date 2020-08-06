@@ -13,27 +13,44 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import co.tiagoaguiar.recyclermasterjava.util.Helper
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.mahmoud.todoapp.model.Task
+import com.mahmoud.todoapp.roomDB.AppDatabase
+import com.mahmoud.todoapp.roomDB.DatabaseHelperImp
 import com.mahmoud.todoapp.util.Constants
+import com.mahmoud.todoapp.util.CustomAlertDialog
+import com.mahmoud.todoapp.util.CustomAlertDialog.getDialogInstance
 import com.mahmoud.todoapp.util.DateHelper
 import com.mahmoud.todoapp.util.DateHelper.updateDateText
 import com.mahmoud.todoapp.util.DateHelper.updateTimeText
+import com.mahmoud.todoapp.util.TasksType
+import com.mahmoud.todoapp.util.dbUtil.Status
+import com.mahmoud.todoapp.util.dbUtil.ViewModelFactory
+import com.mahmoud.todoapp.viewmodel.TaskViewModel
+import kotlinx.android.synthetic.main.activity_add_events.*
 import kotlinx.android.synthetic.main.activity_add_tasks.*
+import kotlinx.android.synthetic.main.activity_add_tasks.containerReminder
+import kotlinx.android.synthetic.main.activity_add_tasks.containerRingtone
 import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 class AddTasksActivity : AppCompatActivity() {
+    private val TAG = "AddTasksActivity"
     private var calendarDate: Calendar? = null
     private var calendarTime: Calendar? = null
     private var startDate: Date? = null
     private var startTime: Date? = null
+    private lateinit var viewModel: TaskViewModel
 
     var isEnable = false
     var repeatType: String? = null
     var ringType: String? = null
+    var taskType: TasksType = TasksType.Daily
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_tasks)
@@ -41,7 +58,7 @@ class AddTasksActivity : AppCompatActivity() {
         calendarDate = Calendar.getInstance()
         calendarTime = Calendar.getInstance()
         isEnable = true
-
+        initViewModel()
         handleTaskType()
         handleBell()
 
@@ -75,6 +92,11 @@ class AddTasksActivity : AppCompatActivity() {
 
         tvTaskDate.setOnClickListener {
             setDate()
+        }
+
+        btnAddTask.setOnClickListener {
+            insertTask()
+
         }
 
 
@@ -128,6 +150,7 @@ class AddTasksActivity : AppCompatActivity() {
 
     private fun handleTaskType() {
         fabDaily.setOnClickListener {
+            taskType = TasksType.Daily
             tvDaily.setTextColor(
                 ContextCompat.getColor(
                     this,
@@ -179,6 +202,7 @@ class AddTasksActivity : AppCompatActivity() {
         }
 
         fabWork.setOnClickListener {
+            taskType = TasksType.Work
             tvWork.setTextColor(
                 ContextCompat.getColor(
                     this,
@@ -228,6 +252,7 @@ class AddTasksActivity : AppCompatActivity() {
             )
         }
         fabHome.setOnClickListener {
+            taskType = TasksType.Home
             tvHome.setTextColor(
                 ContextCompat.getColor(
                     this,
@@ -277,6 +302,7 @@ class AddTasksActivity : AppCompatActivity() {
             )
         }
         fabFriends.setOnClickListener {
+            taskType = TasksType.Friends
             tvFriends.setTextColor(
                 ContextCompat.getColor(
                     this,
@@ -284,18 +310,22 @@ class AddTasksActivity : AppCompatActivity() {
                 )
             )
 
-            tvHome.setTextColor(ContextCompat.getColor(
-                    this,
-                    R.color.gray_light)
-            )
-
-            tvWork.setTextColor(ContextCompat.getColor(
+            tvHome.setTextColor(
+                ContextCompat.getColor(
                     this,
                     R.color.gray_light
                 )
             )
 
-            tvDaily.setTextColor(ContextCompat.getColor(
+            tvWork.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.gray_light
+                )
+            )
+
+            tvDaily.setTextColor(
+                ContextCompat.getColor(
                     this,
                     R.color.gray_light
                 )
@@ -452,8 +482,8 @@ class AddTasksActivity : AppCompatActivity() {
         val year: Int = c.get(Calendar.YEAR)
         val month: Int = c.get(Calendar.MONTH)
         val day: Int = c.get(Calendar.DAY_OF_MONTH)
-        val systemMonth = DateHelper.getFormatDate( date = c)
-        val currentMonth = DateHelper.getFormatDate(date =  startDate!!)
+        val systemMonth = DateHelper.getFormatDate(date = c)
+        val currentMonth = DateHelper.getFormatDate(date = startDate!!)
         return (systemMonth == currentMonth)
     }
 
@@ -536,6 +566,86 @@ class AddTasksActivity : AppCompatActivity() {
                 return
             }
         }
+    }
+
+
+    private fun insertTask() {
+        val title = etTitleTask.text.toString()
+        val details = etDetailsTask.text.toString()
+        val time = tvTaskTime.text.toString()
+        val date = tvTaskDate.text.toString()
+        val repeat = tvReminderTask.text.toString()
+        val ringtone = tvRingtoneTask.text.toString()
+
+        if (title.isEmpty()) {
+            etTitleTask.error = resources.getString(R.string.title_is_empty)
+            return
+        }
+        if (time.equals(resources.getString(R.string.choose_time))) {
+            tvTaskTime.error = resources.getString(R.string.choose_time)
+            return
+        }
+
+        if (date.equals(resources.getString(R.string.choose_date))) {
+            tvTaskDate.error = resources.getString(R.string.choose_time)
+            return
+        }
+
+
+        val task = Task()
+        task.title = title
+        task.details = details
+        task.time = time
+        task.date = date
+        task.tasksType = taskType
+        task.reminderRepeat = repeat
+        task.ringtone = ringtone
+        task.isEnabled = isEnable
+
+        viewModel.insertTask(task)
+
+        setupObserver()
+
+    }
+
+    private fun setupObserver() {
+        val dialog =  getDialogInstance()
+        viewModel.getTasks().observe(this@AddTasksActivity,
+
+            Observer {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        dialog.dismiss()
+                        it.data?.let { users ->
+                            finish()
+                        }
+                    }
+                    Status.LOADING -> {
+                        dialog.show()
+                    }
+                    Status.ERROR -> {
+                        //Handle Error
+                        dialog.dismiss()
+
+                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                        Log.e(TAG, "setupObserver: " + it.message)
+
+                    }
+                }
+
+
+            }
+        )
+
+    }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProviders.of(
+            this, ViewModelFactory(
+                DatabaseHelperImp(AppDatabase.getInstance(applicationContext)),application
+            )
+
+        ).get(TaskViewModel::class.java)
     }
 
 
