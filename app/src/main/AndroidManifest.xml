@@ -49,21 +49,25 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".ContactsActivity"
-            android:parentActivityName=".AddEventsActivity">
+
+        <activity
+            android:name=".ContactsActivity"
+            android:parentActivityName=".AddEventsActivity"
+            android:theme="@style/ActionBar">
 
         </activity>
+
         <activity
             android:name=".BaseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddTasksActivity"
-            android:theme="@style/dateTime.style"
-            android:parentActivityName=".BaseActivity"/>
+            android:parentActivityName=".BaseActivity"
+            android:theme="@style/dateTime.style" />
         <activity
             android:name=".AddEventsActivity"
-            android:theme="@style/dateTime.style"
-            android:parentActivityName=".BaseActivity"/>
+            android:parentActivityName=".BaseActivity"
+            android:theme="@style/dateTime.style" />
         <activity
             android:name=".DetailsEventsActivity"
             android:theme="@style/Theme.MaterialComponents.NoActionBar" />
@@ -82,7 +86,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity"
+        <activity
+            android:name=".TestActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight">
 
         </activity>

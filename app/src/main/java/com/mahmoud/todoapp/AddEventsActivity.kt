@@ -41,18 +41,13 @@ import java.io.File
 import java.util.*
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import co.tiagoaguiar.recyclermasterjava.util.Helper.setProgressDialog
 import com.mahmoud.todoapp.adapter.ContactDetailsAdapter
-import com.mahmoud.todoapp.adapter.ContactsAdapter
 import com.mahmoud.todoapp.model.Contact
 import com.mahmoud.todoapp.model.Event
 import com.mahmoud.todoapp.util.Constants.MINUTE_MILLIS
 import com.mahmoud.todoapp.util.Constants.NINE_MINUTE_MILLIS
-import com.mahmoud.todoapp.util.CustomAlertDialog
 import com.mahmoud.todoapp.util.CustomAlertDialog.getDialogInstance
 import com.mahmoud.todoapp.util.DateHelper
-import kotlinx.android.synthetic.main.activity_contacts.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
@@ -68,7 +63,7 @@ class AddEventsActivity : AppCompatActivity() {
     private var modalDismissWithAnimation = false
     var isEnable = false
     var arrReminderType: HashSet<String> = HashSet()
-
+    private var contactsAdapter: ContactDetailsAdapter? = null
     var ringType: String? = null
     private var startDate: Date? = null
     private var endDate: Date? = null
@@ -80,7 +75,7 @@ class AddEventsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_events)
-        Log.e(TAG, "onCreate: " )
+        Log.e(TAG, "onCreate: ")
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
         actionBar?.title = "add events"
         calendarTime = Calendar.getInstance()
@@ -450,14 +445,14 @@ class AddEventsActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(
             this, ViewModelFactory(
-                DatabaseHelperImp(AppDatabase.getInstance(applicationContext)),application
+                DatabaseHelperImp(AppDatabase.getInstance(applicationContext)), application
             )
 
         ).get(EventViewModel::class.java)
     }
 
     private fun setupObserver() {
-        val dialog =  getDialogInstance()
+        val dialog = getDialogInstance()
 
         viewModel.getEvents().observe(this, Observer {
             when (it.status) {
@@ -652,14 +647,37 @@ class AddEventsActivity : AppCompatActivity() {
         tvReminderEvent.text = builder.toString()
     }
 
-    private fun initRecycleView(list: ArrayList<Contact>) {
+    private fun initContactsRecycleView(list: ArrayList<Contact>) {
+
+        for (i in list.indices) {
+            list[i].isSelected = true
+        }
+        Log.e(TAG, "insertContactsEvent: ${ContactsActivity.contactSelectedList.toString()}")
 
         rvContacts.apply {
-            layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.HORIZONTAL, false)
-            val contactsAdapter = ContactDetailsAdapter(list)
+            layoutManager =
+                LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+            contactsAdapter = ContactDetailsAdapter(list)
             adapter = contactsAdapter
         }
+
+        contactsAdapter!!.setOnClickListener(object : ContactDetailsAdapter.OnItemClickListener {
+            override fun onCloseClick(position: Int) {
+                Log.e(TAG, "onCloseClick: ")
+                list.removeAt(position)
+                contactsAdapter!!.notifyItemRemoved(position)
+                contactsAdapter!!.notifyDataSetChanged()
+            }
+
+            override fun onItemLongClick(position: Int) {
+                Log.e(TAG, "onItemLongClick: ")
+            }
+
+        }
+
+        )
     }
+
     private fun insertEvent() {
         val title = etTitleEvent.text.toString()
         val details = etDetailsEvent.text.toString()
@@ -703,13 +721,9 @@ class AddEventsActivity : AppCompatActivity() {
         event.reminderRepeat = tvReminderEvent.text.toString()
         event.ringtone = tvRingtoneEvent.text.toString()
         event.isEnabledTone = isEnable
-        val list = ArrayList<Contact>()
-        list.add(Contact("Mahmoud", "0597796100", false))
-        list.add(Contact("Ahmad", "059999999", false))
-        list.add(Contact("Sami", "0598x88888", false))
-        list.add(Contact("Ali", "059777777", false))
-        if (!ContactsActivity.contactSelectedList.isNullOrEmpty()){
-            Log.e(TAG, "insertContactsEvent: ${ContactsActivity.contactSelectedList.toString()}" )
+
+        if (!ContactsActivity.contactSelectedList.isNullOrEmpty()) {
+            Log.e(TAG, "insertContactsEvent: ${ContactsActivity.contactSelectedList.toString()}")
             event.contactList = ContactsActivity.contactSelectedList
 
         }
@@ -721,19 +735,9 @@ class AddEventsActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.e(TAG, "onStart: " )
-        initRecycleView(ContactsActivity.contactSelectedList)
+        Log.e(TAG, "onStart: ")
+        initContactsRecycleView(ContactsActivity.contactSelectedList)
 
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.e(TAG, "onRestart: " )
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e(TAG, "onResume: " )
     }
 
 

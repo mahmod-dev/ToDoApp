@@ -1,5 +1,6 @@
 package com.mahmoud.todoapp.adapter
 
+import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,7 @@ class ContactDetailsAdapter(var data: ArrayList<Contact>, var item:Int =R.layout
 
 
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onCloseClick(position: Int)
         fun onItemLongClick(position: Int)
     }
 
@@ -63,15 +64,7 @@ class ContactDetailsAdapter(var data: ArrayList<Contact>, var item:Int =R.layout
         }
 
         init {
-            itemView.setOnClickListener {
-                if (mListener != null) {
-                    val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        if (selectedItems.size() > 0 && mListener != null)
-                            mListener!!.onItemClick(position)
-                    }
-                }
-            }
+
 
             itemView.setOnLongClickListener {
                 if (mListener != null) {
@@ -80,8 +73,18 @@ class ContactDetailsAdapter(var data: ArrayList<Contact>, var item:Int =R.layout
                         mListener!!.onItemLongClick(position)
                     }
                 }
-                false
+                true
 
+            }
+
+            itemView.inputChip.setOnCloseIconClickListener {
+                Log.e("inputChip", " inputChip" )
+                if (mListener != null) {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                            mListener!!.onCloseClick(position)
+                    }
+                }
             }
         }
     }
