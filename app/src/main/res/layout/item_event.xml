@@ -25,10 +25,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/imgEventDelete"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center|end"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="Image"
+                    android:focusable="true"
+                    android:src="@drawable/ic_bin" />
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardEvent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
@@ -37,8 +54,8 @@
 
                     <ImageView
                         android:id="@+id/imgEventBell"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
                         android:layout_gravity="center"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
@@ -57,9 +74,11 @@
                     android:layout_toEndOf="@+id/cardEvent"
                     android:fontFamily="@font/bold"
                     android:gravity="center"
-                    android:text="title"
+                    android:text="@string/title"
+                    android:includeFontPadding="false"
+
                     android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:textSize="16sp" />
 
 
                 <TextView
@@ -67,41 +86,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvEventTitle"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="25dp"
                     android:layout_toEndOf="@+id/cardEvent"
                     android:fontFamily="@font/regular"
                     android:gravity="center"
-                    android:text="8 Nov"
+                    android:text="8 نوفمبر"
+                    android:includeFontPadding="false"
                     android:textColor="@color/gray"
                     android:textSize="12sp" />
 
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignBottom="@+id/tvEventTitle"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="16dp"
-                    android:contentDescription="Image"
-
-                    android:src="@drawable/ic_events" />
 
                 <TextView
                     android:id="@+id/tvEventDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardEvent"
+                    android:layout_below="@id/tvEventCreatedDate"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/regular"
-                    android:text="Believe you can and you’re halfway there."
+                    android:text="اعمل على أن يحبك الناس عندما تغادر منصبك , كما يحبونك عندما تتسلمه there."
                     android:textColor="@color/white"
                     android:textSize="13sp" />
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvEventDetails"
                     android:layout_marginStart="16dp"
@@ -146,6 +155,7 @@
                 android:layout_marginEnd="16dp"
                 android:orientation="vertical">
 
+
                 <TextView
                     android:id="@+id/tvIsMap"
                     android:layout_width="match_parent"
@@ -153,18 +163,17 @@
                     android:layout_marginTop="7dp"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
-                    android:theme="@style/Nav.NavigationDrawer"
                     android:drawableStart="@drawable/ic_location"
                     android:drawablePadding="6dp"
                     android:drawableTint="@color/colorAccent"
                     android:focusable="true"
                     android:fontFamily="@font/regular"
                     android:gravity="center|start"
-                    android:text="Open map"
+                    android:text="@string/open_map"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
-
+                    android:textStyle="bold"
+                    android:theme="@style/Nav.NavigationDrawer" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -192,28 +201,18 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="14dp"
                         android:layout_marginTop="7dp"
-                        android:layout_toEndOf="@+id/tvEventTime"
                         android:drawableStart="@drawable/ic_calendar"
                         android:drawablePadding="6dp"
+                        android:layout_alignParentEnd="true"
                         android:drawableTint="@color/colorAccent"
                         android:fontFamily="@font/regular"
                         android:gravity="center"
                         android:text=" Today - 15 Nov"
+                        android:layout_marginEnd="5dp"
                         android:textColor="@color/white_light"
                         android:textSize="13sp" />
 
-                    <ImageView
-                        android:id="@+id/imgEventDelete"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center|end"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="Image"
-                        android:focusable="true"
-                        android:src="@drawable/ic_bin" />
+
                 </RelativeLayout>
 
 

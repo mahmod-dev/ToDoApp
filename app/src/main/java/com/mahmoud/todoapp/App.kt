@@ -12,9 +12,9 @@ class App : Application() {
     @Suppress("UNUSED_VARIABLE")
     override fun onCreate() {
         super.onCreate()
-        val store = PreferenceLocaleStore(this, Locale(LANGUAGE_ENGLISH))
-        // you can use this instance for DI or get it via Lingver.getInstance() later on
-        val lingver = Lingver.init(this, store)
+//        val store = PreferenceLocaleStore(this, Locale(LANGUAGE_ENGLISH))
+//        // you can use this instance for DI or get it via Lingver.getInstance() later on
+//        val lingver = Lingver.init(this, store)
     }
 
     companion object {

@@ -21,13 +21,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mahmoud.todoapp.model.Task
 import com.mahmoud.todoapp.roomDB.AppDatabase
 import com.mahmoud.todoapp.roomDB.DatabaseHelperImp
-import com.mahmoud.todoapp.util.Constants
-import com.mahmoud.todoapp.util.CustomAlertDialog
+import com.mahmoud.todoapp.util.*
 import com.mahmoud.todoapp.util.CustomAlertDialog.getDialogInstance
-import com.mahmoud.todoapp.util.DateHelper
 import com.mahmoud.todoapp.util.DateHelper.updateDateText
 import com.mahmoud.todoapp.util.DateHelper.updateTimeText
-import com.mahmoud.todoapp.util.TasksType
 import com.mahmoud.todoapp.util.dbUtil.Status
 import com.mahmoud.todoapp.util.dbUtil.ViewModelFactory
 import com.mahmoud.todoapp.viewmodel.TaskViewModel
@@ -40,6 +37,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class AddTasksActivity : AppCompatActivity() {
+    private var path = ""
     private val TAG = "AddTasksActivity"
     private var calendarDate: Calendar? = null
     private var calendarTime: Calendar? = null
@@ -117,9 +115,10 @@ class AddTasksActivity : AppCompatActivity() {
             carAdd.visibility = View.GONE
             //You can get File object from intent
             val file: File = ImagePicker.getFile(data)!!
-
-            //You can also get File Path from intent
             val filePath: String = ImagePicker.getFilePath(data)!!
+
+            FileHelper.copy(file, File(FileHelper.toDoBasePath(this), file.name))
+            path = FileHelper.toDoBasePath(this) + "/${file.name}"
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
             Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
         } else {
@@ -595,12 +594,13 @@ class AddTasksActivity : AppCompatActivity() {
         val task = Task()
         task.title = title
         task.details = details
-        task.time = time
-        task.date = date
+        task.time = this.startTime!!.time
+        task.date = this.startDate!!.time
         task.tasksType = taskType
         task.reminderRepeat = repeat
         task.ringtone = ringtone
-        task.isEnabled = isEnable
+        task.isEnabledTone = isEnable
+        task.imagePath = path
 
         viewModel.insertTask(task)
 
@@ -609,7 +609,7 @@ class AddTasksActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        val dialog =  getDialogInstance()
+        val dialog = getDialogInstance()
         viewModel.getTasks().observe(this@AddTasksActivity,
 
             Observer {
@@ -642,7 +642,7 @@ class AddTasksActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(
             this, ViewModelFactory(
-                DatabaseHelperImp(AppDatabase.getInstance(applicationContext)),application
+                DatabaseHelperImp(AppDatabase.getInstance(applicationContext)), application
             )
 
         ).get(TaskViewModel::class.java)

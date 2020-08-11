@@ -32,6 +32,8 @@ interface DatabaseHelper {
 
     suspend fun getAllContacts(): List<Contact>
 
+    suspend fun getWhereName(name:String): List<Contact>
+
     suspend fun insertAllContacts(list: List<Contact>)
 
     suspend fun insertContact(contact: Contact)

@@ -1,13 +1,18 @@
 package com.mahmoud.todoapp.roomDB
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.mahmoud.todoapp.model.Contact
-import com.mahmoud.todoapp.roomDB.Dao.DaoEvent
 import com.mahmoud.todoapp.model.Event
 import com.mahmoud.todoapp.model.Task
 import com.mahmoud.todoapp.roomDB.Dao.DaoContact
+import com.mahmoud.todoapp.roomDB.Dao.DaoEvent
 import com.mahmoud.todoapp.roomDB.Dao.DaoTask
+
 
 @Database(entities = [Event::class, Task::class, Contact::class], version = 1)
 @TypeConverters(DataConverter::class)
@@ -35,7 +40,16 @@ abstract class AppDatabase : RoomDatabase() {
                 context.applicationContext,
                 AppDatabase::class.java,
                 "Todo.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .addCallback(object : Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        // add this code
+                        db.execSQL("PRAGMA encoding='UTF-8';")
+                    }
+                }).build()
+
         }
     }
 }

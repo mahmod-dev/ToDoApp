@@ -48,6 +48,7 @@ import com.mahmoud.todoapp.util.Constants.MINUTE_MILLIS
 import com.mahmoud.todoapp.util.Constants.NINE_MINUTE_MILLIS
 import com.mahmoud.todoapp.util.CustomAlertDialog.getDialogInstance
 import com.mahmoud.todoapp.util.DateHelper
+import com.mahmoud.todoapp.util.FileHelper
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
@@ -55,6 +56,8 @@ import kotlin.collections.HashSet
 
 class AddEventsActivity : AppCompatActivity() {
     private val TAG = "AddEventsActivity"
+    var path = ""
+    var isContactEmpty = false
     var checkedItems = booleanArrayOf(true, false, false, false, false, false)
     var sub: CharSequence? = null
     private lateinit var viewModel: EventViewModel
@@ -83,7 +86,6 @@ class AddEventsActivity : AppCompatActivity() {
         initViewModel()
         isEnable = true
         arrReminderType.add(resources.getString(R.string.before_10_min))
-        // setupObserver()
         tvStartTime.setOnClickListener {
             setTimeStart()
 
@@ -274,9 +276,10 @@ class AddEventsActivity : AppCompatActivity() {
             carAddE.visibility = View.GONE
             //You can get File object from intent
             val file: File = ImagePicker.getFile(data)!!
-
-            //You can also get File Path from intent
             val filePath: String = ImagePicker.getFilePath(data)!!
+            val extension = filePath.substring(filePath.length - 3)
+            FileHelper.copy(file, File(FileHelper.toDoBasePath(this), file.name))
+            path = FileHelper.toDoBasePath(this)+"/${file.name}"
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
             Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
         } else {
@@ -571,6 +574,7 @@ class AddEventsActivity : AppCompatActivity() {
 
         updateTimeText(calendarTime!!, tvStartTime)
         calendarTime!!.add(Calendar.MINUTE, 15)
+        endTime = calendarTime!!.time
         updateTimeText(calendarTime!!, tvEndTime)
         calendarTime!!.add(Calendar.MINUTE, -15)
     }
@@ -667,6 +671,9 @@ class AddEventsActivity : AppCompatActivity() {
                 list.removeAt(position)
                 contactsAdapter!!.notifyItemRemoved(position)
                 contactsAdapter!!.notifyDataSetChanged()
+               if ( list.isEmpty()) {
+                   isContactEmpty = true
+               }
             }
 
             override fun onItemLongClick(position: Int) {
@@ -714,18 +721,18 @@ class AddEventsActivity : AppCompatActivity() {
         val event = Event()
         event.title = title
         event.details = details
-        event.timeStart = startTime
-        event.timeEnd = endTime
-        event.dateStart = startDate
-        event.dateEnd = endDate
+        event.timeStart = this.startTime!!.time
+        event.timeEnd = this.endTime!!.time
+        event.dateStart = this.startDate!!.time
+        event.dateEnd = this.endDate!!.time
         event.reminderRepeat = tvReminderEvent.text.toString()
         event.ringtone = tvRingtoneEvent.text.toString()
         event.isEnabledTone = isEnable
+        event.imagePath = path
 
-        if (!ContactsActivity.contactSelectedList.isNullOrEmpty()) {
-            Log.e(TAG, "insertContactsEvent: ${ContactsActivity.contactSelectedList.toString()}")
+        if (!ContactsActivity.contactSelectedList.isNullOrEmpty() && !isContactEmpty ) {
+            Log.e(TAG, "insertContactsEvent: ${ContactsActivity.contactSelectedList}")
             event.contactList = ContactsActivity.contactSelectedList
-
         }
         viewModel.insertEvents(event)
 

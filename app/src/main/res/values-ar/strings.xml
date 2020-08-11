@@ -18,7 +18,7 @@
     <string name="add_task">اضافة مهمة</string>
     <string name="daily">يوميا</string>
     <string name="works">أعمال</string>
-    <string name="home">المنزل</string>
+    <string name="home">الرئيسية</string>
     <string name="friends">الأصدقاء</string>
     <string name="log_out">تسجيل الخروج</string>
     <string name="details">التفاصيل</string>
@@ -67,10 +67,27 @@
     <string name="choose_date">اختر التاريخ!</string>
     <string name="without_tone">بدون نغمة</string>
     <string name="invalid_date">تاريخ غير صالح</string>
-    <string name="select_start_date_before">Select start date before!</string>
+    <string name="select_start_date_before">اختر تاريخ البداية أولا!</string>
     <string name="select_end_date_before">Select end date before!</string>
-    <string name="select_start_time_before">Select start time before!</string>
-    <string name="invalid_time">Invalid time!</string>
-    <string name="too_short_period">Too short period!</string>
-    <string name="at_least">At least</string>
+    <string name="select_start_time_before"> اختر وقت البداية أولا! </string>
+    <string name="invalid_time">وقت غير صالح!</string>
+    <string name="too_short_period">الفترة قصيرة جدا!</string>
+    <string name="at_least">على الأقل</string>
+    <string name="open_map">افتح الخريطة</string>
+
+
+    <!---   Date   -->
+    <string name="weeks">أسابيع</string>
+    <string name="days">أيام</string>
+    <string name="minutes">دقائق</string>
+    <string name="seconds">ثوان</string>
+    <string name="few_seconds_ago">منذ ثوان</string>
+    <string name="ago">منذ</string>
+    <string name="now">الآن</string>
+    <string name="hour">ساعة</string>
+    <string name="week">أسبوع</string>
+
+    <string name="today">اليوم</string>
+    <string name="tomorrow">غدا</string>
+    <string name="yesterday">الأمس</string>
 </resources>

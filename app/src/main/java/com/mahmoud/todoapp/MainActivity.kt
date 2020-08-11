@@ -17,9 +17,7 @@ class MainActivity : BaseActivity() {
             HomeFragment()
         ).commit()
 
-        val ev = Event()
 
-        ev.createdDate = ""
 
     }
 }

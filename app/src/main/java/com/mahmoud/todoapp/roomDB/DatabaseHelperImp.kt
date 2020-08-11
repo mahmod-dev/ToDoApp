@@ -54,6 +54,10 @@ class DatabaseHelperImp(private val appDatabase: AppDatabase) : DatabaseHelper {
         return appDatabase.daoContact().getAll()
     }
 
+    override suspend fun getWhereName(name: String): List<Contact> {
+        return appDatabase.daoContact().getName(name)
+    }
+
     override suspend fun insertAllContacts(list: List<Contact>) {
         return appDatabase.daoContact().insertAll(list)
     }

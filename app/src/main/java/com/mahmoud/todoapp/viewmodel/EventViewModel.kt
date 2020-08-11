@@ -58,7 +58,6 @@ class EventViewModel(private val dbHelper: DatabaseHelper) : ViewModel() {
                 events.postValue(Resource.error(ex.message.toString(), null))
 
             }
-
         }
     }
 

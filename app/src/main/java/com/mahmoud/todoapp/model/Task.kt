@@ -12,11 +12,11 @@ import java.io.Serializable
 @Entity
 data class Task(
     var title: String = "", var details: String = "",
-    var time: String = "", var date: String = "",
+    var time: Long = 0, var date: Long = 0,
     var ringtone: String = "",
     var longitude: Double = 0.0, var latitude: Double = 0.0,
-    var createdDate: String = "", var isEnabled: Boolean = false,
-    var statusRing: StatusRing = StatusRing.Unknown, var image: String = "",
+    var createdDate: Long = System.currentTimeMillis(), var isEnabledTone: Boolean = false,
+    var statusRing: StatusRing = StatusRing.Unknown, var imagePath: String = "",
     var tasksType: TasksType = TasksType.Daily,
     var reminderRepeat: String = ""
 

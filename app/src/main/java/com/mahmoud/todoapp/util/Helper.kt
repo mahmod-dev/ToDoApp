@@ -6,11 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.provider.ContactsContract
 import android.provider.Settings
-import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.Window
@@ -21,16 +22,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.lifecycle.ViewModelProviders
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mahmoud.todoapp.R
 import com.mahmoud.todoapp.model.Contact
-import com.mahmoud.todoapp.roomDB.AppDatabase
-import com.mahmoud.todoapp.roomDB.DatabaseHelperImp
-import com.mahmoud.todoapp.util.dbUtil.ViewModelFactory
-import com.mahmoud.todoapp.viewmodel.ContactViewModel
 import io.grpc.android.BuildConfig
+import java.io.File
 
 
 object Helper {
@@ -76,10 +73,11 @@ object Helper {
                                         ContactsContract.CommonDataKinds.Phone.NUMBER
                                     )
                                 )
-                                Log.e(TAG, "Name: $name")
-                                Log.e(TAG, "Phone Number: $phoneNo")
+//                                Log.e(TAG, "Name: $name")
+//                                Log.e(TAG, "Phone Number: $phoneNo")
                                 val contact = Contact()
                                 contact.name = name
+                                contact.contactId = id
                                 contact.number = phoneNo
                                 contact.isSelected = false
                                 data.add(contact)
@@ -213,4 +211,21 @@ object Helper {
     }
 
 
+    fun convertPathToBitmap(path: String): Bitmap? {
+        val file = File(path)
+        if (file.exists())
+        return BitmapFactory.decodeFile(path)
+
+        return null
+
+    }
+
+    fun convertPathToUri(path: String): Uri? {
+        val file = File(path)
+        if (file.exists())
+        return Uri.fromFile(file)
+
+        return null
+
+    }
 }

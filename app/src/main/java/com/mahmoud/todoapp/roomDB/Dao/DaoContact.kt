@@ -7,10 +7,13 @@ import com.mahmoud.todoapp.model.Task
 
 @Dao
 interface DaoContact {
-    @Query("SELECT * FROM contact")
+    @Query("SELECT * FROM contact ORDER BY name ASC ")
     suspend fun getAll(): List<Contact>
 
-    @Insert
+    @Query("SELECT * FROM contact WHERE name like '%' || :name || '%' ORDER BY name ASC ")
+    suspend fun getName(name:String): List<Contact>
+
+    @Insert(onConflict =OnConflictStrategy.IGNORE )
     suspend fun insertAll(list: List<Contact>)
 
     @Insert

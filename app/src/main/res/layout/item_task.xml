@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvTaskTitle"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="25dp"
                     android:layout_toEndOf="@+id/cardTask"
                     android:fontFamily="@font/regular"
                     android:gravity="center"
@@ -75,23 +75,33 @@
                     android:textColor="@color/gray"
                     android:textSize="12sp" />
 
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignBottom="@+id/tvTaskTitle"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:contentDescription="Image"
+                    android:backgroundTint="@color/colorAccent"
 
-                    android:src="@drawable/ic_task_everyday" />
+                    app:cardCornerRadius="25dp">
+
+                    <ImageView
+                        android:id="@+id/imgTaskType"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Image"
+                        android:src="@drawable/ic_task_everyday" />
+                </androidx.cardview.widget.CardView>
+
 
                 <TextView
                     android:id="@+id/tvTaskDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardTask"
+                    android:layout_below="@id/tvTaskCreatedDate"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
@@ -101,7 +111,7 @@
                     android:textSize="13sp" />
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvTaskDetails"
                     android:layout_marginStart="16dp"
@@ -151,7 +161,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
-                    android:theme="@style/Nav.NavigationDrawer"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:drawableStart="@drawable/ic_location"
@@ -160,10 +169,11 @@
                     android:focusable="true"
                     android:fontFamily="@font/regular"
                     android:gravity="center|start"
-                    android:text="Open map"
+                    android:text="@string/open_map"
                     android:textColor="@color/gray"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:theme="@style/Nav.NavigationDrawer" />
 
 
                 <RelativeLayout

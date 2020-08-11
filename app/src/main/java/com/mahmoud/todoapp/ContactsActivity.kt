@@ -1,10 +1,14 @@
 package com.mahmoud.todoapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View.OnTouchListener
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -22,13 +26,11 @@ import com.mahmoud.todoapp.util.dbUtil.Status
 import com.mahmoud.todoapp.util.dbUtil.ViewModelFactory
 import com.mahmoud.todoapp.viewmodel.ContactViewModel
 import kotlinx.android.synthetic.main.activity_contacts.*
-import kotlin.math.log
 
 
 class ContactsActivity : AppCompatActivity() {
     var count: Int = 0
     var mActionModeIsActive: Boolean = false
-
     companion object {
         var contactSelectedList = ArrayList<Contact>()
     }
@@ -47,10 +49,8 @@ class ContactsActivity : AppCompatActivity() {
         title = "My Contacts"
         initViewModel()
 
-
-
         setupObserver()
-
+        handleSearchContact()
     }
 
     private fun initRecycleView(list: List<Contact>) {
@@ -117,15 +117,13 @@ class ContactsActivity : AppCompatActivity() {
                 override fun onDestroyActionMode(mode: ActionMode) {
                     actionMode = null
                     Log.e(TAG, "onDestroyActionMode")
-                    for (i in contactSelectedList.indices){
+                    for (i in contactSelectedList.indices) {
                         contactSelectedList[i].isSelected = false
                     }
                     contactsAdapter?.notifyDataSetChanged()
                     contactSelectedList.clear()
 
                 }
-
-
 
 
             }
@@ -169,6 +167,7 @@ class ContactsActivity : AppCompatActivity() {
                                 }
                             }
                             initRecycleView(users)
+                            Log.e(TAG, "contact list size: ${users.size}")
                         }
                     }
                     Status.LOADING -> {
@@ -225,6 +224,39 @@ class ContactsActivity : AppCompatActivity() {
     private fun updateActionModeSize() {
         actionMode?.title = contactSelectedList.size.toString()
 
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun handleSearchContact() {
+        etSearchContact.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                viewModel.fetchContactName(etSearchContact.text.toString())
+                true
+            } else {
+                false
+            }
+        }
+
+
+
+
+        etSearchContact?.setOnTouchListener(OnTouchListener { v, event ->
+            val DRAWABLE_LEFT = 0
+            val DRAWABLE_TOP = 1
+            val DRAWABLE_RIGHT = 2
+            val DRAWABLE_BOTTOM = 3
+            if (event.action == MotionEvent.ACTION_UP) {
+                if(event.getX() <= (etSearchContact!!.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width()))
+                {
+                    viewModel.fetchContactName("")
+                    etSearchContact!!.setText("")
+
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
     }
 
 

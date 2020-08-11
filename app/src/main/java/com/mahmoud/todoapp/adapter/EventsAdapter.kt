@@ -8,14 +8,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import co.tiagoaguiar.recyclermasterjava.util.Helper
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.gms.maps.MapView
 import com.mahmoud.todoapp.R
 import com.mahmoud.todoapp.model.Event
+import com.mahmoud.todoapp.util.DateHelper
 import kotlinx.android.synthetic.main.item_event.view.*
-import java.util.*
 
 
-class EventsAdapter(var data: ArrayList<Event>) :
+class EventsAdapter(var data: List<Event>) :
     RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
     var mListener: OnItemClickListener? = null
     val selectedItems = SparseBooleanArray()
@@ -68,6 +71,29 @@ class EventsAdapter(var data: ArrayList<Event>) :
         var tvEventDate: TextView = itemView.tvEventDate
         fun bind(event: Event) {
 
+            tvEventTitle.text = event.title
+            tvEventDetails.text = event.details
+            tvEventTime.text =
+                "${DateHelper.timeToString(event.timeStart)} - ${DateHelper.timeToString(event.timeEnd)} "
+
+            tvEventDate.text =
+                "${DateHelper.dateToString(itemView.context,event.dateStart)} - ${DateHelper.dateToString(itemView.context,event.dateEnd)} "
+
+            if (event.isEnabledTone) {
+                imgEventBell.setImageResource(R.drawable.ic_bell)
+            } else
+                imgEventBell.setImageResource(R.drawable.ic_bell_cancel)
+
+            tvEventCreatedDate.text = DateHelper.getRelationTime(event.createdDate)
+
+            if (event.imagePath.isNotEmpty()){
+                Glide.with(itemView.context).load(Helper.convertPathToUri(event.imagePath))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.ic_man)
+                    .into(imgEvent);
+            }
+           // imgEvent.setImageBitmap(Helper.convertPathToBitmap(event.imagePath))
+
         }
 
         init {
@@ -75,7 +101,7 @@ class EventsAdapter(var data: ArrayList<Event>) :
                 if (mListener != null) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                            mListener!!.onItemClick(position)
+                        mListener!!.onItemClick(position)
                     }
                 }
             }
@@ -94,26 +120,25 @@ class EventsAdapter(var data: ArrayList<Event>) :
     }
 
 
+    /*
+       public void initRecycleView() {
+           LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
+           manager.setOrientation(RecyclerView.VERTICAL);
+           rv.setLayoutManager(manager);
+           EventsAdapter adapter = new EventsAdapter(data);
+           rv.setAdapter(adapter);
 
- /*
-    public void initRecycleView() {
-        LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
-        manager.setOrientation(RecyclerView.VERTICAL);
-        rv.setLayoutManager(manager);
-        EventsAdapter adapter = new EventsAdapter(data);
-        rv.setAdapter(adapter);
+       }
+   */
+    /*    public void initRecycleView(ArrayList<MyObject> data) {
+    LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
+    manager.setOrientation(RecyclerView.VERTICAL);
 
-    }
-*/
-        /*    public void initRecycleView(ArrayList<MyObject> data) {
-        LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
-        manager.setOrientation(RecyclerView.VERTICAL);
+    binding.rv.setLayoutManager(manager);
+    binding.rv.addItemDecoration(new VerticalSpacingItemDecorator(25));
+    adapter = new CustomRecycleAdapter(data);
+    binding.rv.setAdapter(adapter);
 
-        binding.rv.setLayoutManager(manager);
-        binding.rv.addItemDecoration(new VerticalSpacingItemDecorator(25));
-        adapter = new CustomRecycleAdapter(data);
-        binding.rv.setAdapter(adapter);
-
-    }*/
+}*/
 
 }

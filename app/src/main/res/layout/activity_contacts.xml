@@ -8,23 +8,29 @@
     android:orientation="vertical"
     tools:context=".ContactsActivity">
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
+        android:id="@+id/etSearchContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:background="@drawable/sh_corner"
-        android:backgroundTint="@color/gray_item_background"
-        android:gravity="start"
+        android:backgroundTint="@color/colorPrimary_light"
+        android:gravity="start|center"
         android:hint="@string/search"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLines="1"
+        android:textSize="16sp"
+
         android:padding="6dp"
         android:drawablePadding="6dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textDirection="locale"
         app:drawableStartCompat="@drawable/ic_search"
         android:drawableEnd="@drawable/ic_icons_light_close"
+        android:drawableTint="@color/white"
         />
 
     <androidx.recyclerview.widget.RecyclerView

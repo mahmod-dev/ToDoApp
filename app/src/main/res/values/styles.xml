@@ -6,8 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:actionModeBackground">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/bold</item>
-
+        <item name="android:includeFontPadding">false</item>
     </style>
 
 
@@ -55,10 +54,10 @@
 
     </style>
 
-    <style name="ActionBar" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="ActionMode" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:titleTextStyle">@color/white</item>
-        <item name="android:fontFamily">@font/bold</item>
+        <item name="android:fontFamily">@font/regular</item>
         <item name="android:actionModeBackground">@color/colorAccent</item>
 <!--        <item name="actionModeCloseButtonStyle">@style/NoCloseButtonActionModeStyle</item>-->
 

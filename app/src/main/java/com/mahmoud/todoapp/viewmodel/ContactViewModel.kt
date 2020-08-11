@@ -15,10 +15,10 @@ class ContactViewModel(private val dbHelper: DatabaseHelper, application: Applic
     private val contacts = MutableLiveData<Resource<List<Contact>>>()
 
     init {
-        fetchEvents(application.applicationContext)
+        fetchContacts(application.applicationContext)
     }
 
-    private fun fetchEvents(context: Context) {
+    private fun fetchContacts(context: Context) {
         viewModelScope.launch {
             contacts.postValue(Resource.loading(null))
 
@@ -33,8 +33,34 @@ class ContactViewModel(private val dbHelper: DatabaseHelper, application: Applic
                         }.await()
                     }
 
-                } else
+                } else{
                     contacts.postValue(Resource.success(contactFromDB))
+                    CoroutineScope(Dispatchers.IO).launch {
+                        async {
+                            insertAllContact(Helper.getContactList(context))
+
+                        }.await()
+                    }
+                }
+            } catch (ex: Exception) {
+                contacts.postValue(Resource.error(ex.message.toString(), null))
+
+            }
+        }
+    }
+
+     fun fetchContactName(contactName: String) {
+        viewModelScope.launch {
+            contacts.postValue(Resource.loading(null))
+
+            try {
+                val contactFromDB = dbHelper.getWhereName(contactName)
+                if (contactFromDB.isNotEmpty()){
+                    contacts.postValue(Resource.success(contactFromDB))
+                }else
+                    contacts.postValue(Resource.error("Not found contacts!", null))
+
+
             } catch (ex: Exception) {
                 contacts.postValue(Resource.error(ex.message.toString(), null))
 

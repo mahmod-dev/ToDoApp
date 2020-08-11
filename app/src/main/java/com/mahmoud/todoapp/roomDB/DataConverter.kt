@@ -1,6 +1,5 @@
 package com.mahmoud.todoapp.roomDB
 
-import android.media.Ringtone
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -10,13 +9,13 @@ import com.mahmoud.todoapp.util.TasksType
 
 class DataConverter {
     @TypeConverter
-    fun toContact(json: String): List<Contact> {
+    fun toContact(json: String?): List<Contact>? {
         val type = object : TypeToken<List<Contact>>() {}.type
         return Gson().fromJson(json, type)
     }
 
     @TypeConverter
-    fun fromContact(contactList: List<Contact>): String {
+    fun fromContact(contactList: List<Contact>?): String? {
         val type = object: TypeToken<List<Contact>>() {}.type
         return Gson().toJson(contactList, type)
     }
