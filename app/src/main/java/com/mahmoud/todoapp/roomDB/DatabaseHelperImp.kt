@@ -1,8 +1,8 @@
 package com.mahmoud.todoapp.roomDB
 
-import com.mahmoud.db_with_coroutine.roomDB.DatabaseHelper
 import com.mahmoud.todoapp.model.Contact
 import com.mahmoud.todoapp.model.Event
+import com.mahmoud.todoapp.model.EventTask
 import com.mahmoud.todoapp.model.Task
 
 class DatabaseHelperImp(private val appDatabase: AppDatabase) : DatabaseHelper {
@@ -29,6 +29,8 @@ class DatabaseHelperImp(private val appDatabase: AppDatabase) : DatabaseHelper {
     override suspend fun getAllTasks(): List<Task> {
         return appDatabase.daoTask().getAll()
     }
+
+
 
     override suspend fun insertAllTasks(list: List<Task>) {
         return appDatabase.daoTask().insertAll(list)

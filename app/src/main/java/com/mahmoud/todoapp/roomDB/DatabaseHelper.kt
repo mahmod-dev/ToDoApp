@@ -1,9 +1,8 @@
-package com.mahmoud.db_with_coroutine.roomDB
+package com.mahmoud.todoapp.roomDB
 
-import androidx.room.Insert
-import androidx.room.Query
 import com.mahmoud.todoapp.model.Contact
 import com.mahmoud.todoapp.model.Event
+import com.mahmoud.todoapp.model.EventTask
 import com.mahmoud.todoapp.model.Task
 
 interface DatabaseHelper {
@@ -18,7 +17,6 @@ interface DatabaseHelper {
 
     suspend fun updateEvents(event: Event)
 
-
     suspend fun getAllTasks(): List<Task>
 
     suspend fun insertAllTasks(list: List<Task>)
@@ -32,9 +30,11 @@ interface DatabaseHelper {
 
     suspend fun getAllContacts(): List<Contact>
 
-    suspend fun getWhereName(name:String): List<Contact>
+    suspend fun getWhereName(name: String): List<Contact>
 
     suspend fun insertAllContacts(list: List<Contact>)
 
     suspend fun insertContact(contact: Contact)
+
+
 }

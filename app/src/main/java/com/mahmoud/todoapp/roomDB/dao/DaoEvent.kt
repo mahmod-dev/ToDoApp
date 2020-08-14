@@ -1,12 +1,12 @@
-package com.mahmoud.todoapp.roomDB.Dao
+package com.mahmoud.todoapp.roomDB.dao
 
 import androidx.room.*
 import com.mahmoud.todoapp.model.Event
-import com.mahmoud.todoapp.model.Task
+import com.mahmoud.todoapp.model.EventTask
 
 @Dao
 interface DaoEvent {
-    @Query("SELECT * FROM event")
+    @Query("SELECT * FROM event  ORDER BY dateStart ")
     suspend fun getAll(): List<Event>
 
     @Insert
@@ -20,5 +20,7 @@ interface DaoEvent {
 
     @Delete
     suspend fun delete(event: Event)
+
+
 
 }

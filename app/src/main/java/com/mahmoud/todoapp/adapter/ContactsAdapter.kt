@@ -12,6 +12,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmoud.todoapp.R
 import com.mahmoud.todoapp.model.Contact
+import com.mahmoud.todoapp.model.Event
+import com.mahmoud.todoapp.model.EventTask
+import com.mahmoud.todoapp.model.Task
 import kotlinx.android.synthetic.main.item_contacts.view.*
 import java.util.*
 
@@ -21,18 +24,19 @@ class ContactsAdapter(var data: List<Contact>, var item: Int = R.layout.item_con
 
 
     interface OnItemClickListener {
-        fun onItemClick(position: Int,data: List<Contact>)
-        fun onItemLongClick(position: Int,data: List<Contact>)
+        fun onItemClick(position: Int, data: List<Contact>)
+        fun onItemLongClick(position: Int, data: List<Contact>)
+
     }
 
     fun setOnClickListener(listener: OnItemClickListener?) {
         mListener = listener
+
     }
 
     fun getContacts(): List<Contact> {
         return data
     }
-
 
 
     override fun onCreateViewHolder(
@@ -96,8 +100,8 @@ class ContactsAdapter(var data: List<Contact>, var item: Int = R.layout.item_con
                 if (mListener != null) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                        if ( mListener != null)
-                            mListener!!.onItemClick(position,data)
+                        if (mListener != null)
+                            mListener!!.onItemClick(position, data)
                     }
                 }
             }
@@ -106,7 +110,7 @@ class ContactsAdapter(var data: List<Contact>, var item: Int = R.layout.item_con
                 if (mListener != null) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                        mListener!!.onItemLongClick(position,data)
+                        mListener!!.onItemLongClick(position, data)
                     }
                 }
                 true

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,9 +33,9 @@ import kotlinx.android.synthetic.main.fragment_events.*
 class EventsFragment : Fragment() {
     val TAG = "EventsFragment"
     private var eventsAdapter: EventsAdapter? = null
-    private var rvEvents: RecyclerView? = null
     private lateinit var viewModel: EventViewModel
-
+    private var rvEvents: RecyclerView? = null
+    private var dialog : AlertDialog? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -42,6 +43,7 @@ class EventsFragment : Fragment() {
         rvEvents = view.findViewById(R.id.rvEvents);
         initViewModel()
         setupObserver()
+        dialog =  activity?.getDialogInstance()
 
         eventsAdapter?.setOnClickListener(object : EventsAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
@@ -65,8 +67,6 @@ class EventsFragment : Fragment() {
             adapter = eventsAdapter
             isNestedScrollingEnabled = false
             setItemViewCacheSize(20);
-            isDrawingCacheEnabled = true;
-            drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH;
         }
     }
     private fun initViewModel() {
@@ -80,7 +80,6 @@ class EventsFragment : Fragment() {
 
 
     private fun setupObserver() {
-        val dialog =  activity?.getDialogInstance()
         viewModel.getEvents().observe(this,
 
             Observer {

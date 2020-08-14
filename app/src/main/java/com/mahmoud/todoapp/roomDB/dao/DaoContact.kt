@@ -1,9 +1,7 @@
-package com.mahmoud.todoapp.roomDB.Dao
+package com.mahmoud.todoapp.roomDB.dao
 
 import androidx.room.*
 import com.mahmoud.todoapp.model.Contact
-import com.mahmoud.todoapp.model.Event
-import com.mahmoud.todoapp.model.Task
 
 @Dao
 interface DaoContact {

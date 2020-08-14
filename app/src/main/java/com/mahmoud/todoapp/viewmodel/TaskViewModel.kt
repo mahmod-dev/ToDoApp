@@ -1,8 +1,7 @@
 package com.mahmoud.todoapp.viewmodel
 
 import androidx.lifecycle.*
-import com.mahmoud.db_with_coroutine.roomDB.DatabaseHelper
-import com.mahmoud.todoapp.model.Event
+import com.mahmoud.todoapp.roomDB.DatabaseHelper
 import com.mahmoud.todoapp.model.Task
 import com.mahmoud.todoapp.util.dbUtil.Resource
 import kotlinx.coroutines.launch
@@ -12,10 +11,10 @@ class TaskViewModel(private val dbHelper: DatabaseHelper) : ViewModel() {
     private val tasks = MutableLiveData<Resource<List<Task>>>()
 
     init {
-        fetchEvents()
+        fetchTasks()
     }
 
-    private fun fetchEvents() {
+    private fun fetchTasks() {
         viewModelScope.launch {
             tasks.postValue(Resource.loading(null))
 
